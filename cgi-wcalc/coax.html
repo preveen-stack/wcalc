@@ -1,0 +1,303 @@
+<!-- $Id: coax.html,v 1.16 2009/02/11 00:00:27 dan Exp $ -->
+<!--
+ * Copyright (c) 2002, 2004, 2005 Dan McMahill
+ * All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 2 of the License.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ -->
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Coax Analysis/Synthesis</TITLE>
+<!-- Created by: Dan McMahill, 2001/09/12 -->
+<LINK REV="made" HREF="mailto:nospam_to_mcmahill@alum.mit.make_edu">
+<link rel="shortcut icon" href="<@s@HTMLPATH@>/favicon.ico" type="image/x-icon">    
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="description" content="Coax Analysis/Synthesis">
+<meta name="keywords" content="
+coax
+">
+<@s@cgi_units_menu_init()@>
+</HEAD>
+
+<body bgcolor="#FFFFFF" text="#000000" onLoad="units_init()">
+
+<H1 ALIGN="CENTER">Coax Analysis/Synthesis Calculator</H1>
+
+<P>
+
+
+<FORM NAME="wcalc" METHOD=GET ACTION="coax.cgi">
+<TABLE> <!-- The main table -->
+<TR>    <!-- The first (only) row in the main table -->
+<TD>    <!-- The left hand cell in the main table -->
+
+<TABLE>  <!-- The left hand table -->
+
+<TR ALIGN="CENTER">
+<TD><IMG SRC="<@s@HTMLPATH@>coax_model.png"  WIDTH=287 HEIGHT=125
+     ALT="[Coax Circuit Model]"></TD>
+</TR>
+
+<TR ALIGN="CENTER">
+<TD><INPUT TYPE="TEXT" DISABLED NAME="status" VALUE=" "></TD>
+</TR>
+
+<TR ALIGN="CENTER">
+<TD>
+
+<TABLE>  <!-- The left hand entry table -->
+<TR>
+<TD>L =</TD>
+<TD><@g@line->L/line->units_L->sf@></TD>
+<TD>
+<@s@cgi_units_menu_display(menu_L)@>
+</TD>
+</TR>
+
+<TR>
+<TD>R =</TD>
+<TD><@g@line->R/line->units_R->sf@></TD>
+<TD>
+<@s@cgi_units_menu_display(menu_R)@>
+</TD>
+</TR>
+
+<TR>
+<TD>C =</TD>
+<TD><@g@line->C/line->units_C->sf@></TD>
+<TD>
+<@s@cgi_units_menu_display(menu_C)@>
+</TD>
+</TR>
+
+<TR>
+<TD>G =</TD>
+<TD><@g@line->G/line->units_G->sf@></TD>
+<TD>
+<@s@cgi_units_menu_display(menu_G)@>
+</TD>
+</TR>
+
+
+<TR>
+<TD>Z0 =</TD>
+<TD><@g@line->z0@></TD>
+<TD>[ohm]</TD>
+</TR>
+
+<TR>
+<TD>Loss =</TD>
+<TD><@g@line->loss@></TD>
+<TD>
+<@s@cgi_units_menu_display(menu_loss)@>
+</TD>
+</TR>
+
+<TR>
+<TD>Loss/len =</TD>
+<TD><@g@line->losslen@></TD>
+<TD>
+<@s@cgi_units_menu_display(menu_losslen)@>
+</TD>
+</TR>
+
+<TR>
+<TD>Conductor Loss =</TD>
+<TD><@g@line->alpha_c/line->units_losslen->sf@></TD>
+<TD>
+<INPUT TYPE="TEXT" DISABLED VALUE=" " NAME="entry_alphac">
+</TD>
+</TR>
+
+<TR>
+<TD>Dielectric Loss =</TD>
+<TD><@g@line->alpha_d/line->units_losslen->sf@></TD>
+<TD>
+<INPUT TYPE="TEXT" DISABLED VALUE=" " NAME="entry_alphad">
+</TD>
+</TR>
+
+<TR>
+<TD>Delay =</TD>
+<TD><@g@line->delay/line->units_delay->sf@></TD>
+<TD>
+<@s@cgi_units_menu_display(menu_delay)@>
+</TD>
+</TR>
+
+<TR>
+<TD>TE10 Cutoff Freq. =</TD>
+<TD><@g@line->fc/line->units_fc->sf@></TD>
+<TD>
+<@s@cgi_units_menu_display(menu_fc)@>
+</TD>
+</TR>
+
+<TR>
+<TD>Max. E-Field =</TD>
+<TD><@g@line->emax/line->units_emax->sf@></TD>
+<TD>
+<@s@cgi_units_menu_display(menu_emax)@>
+</TD>
+</TR>
+
+</TABLE>  <!-- end of model parameter table -->
+</TD>     <!-- end of cell with left hand entry table -->
+</TR>     <!-- end of row with left hand entry table -->
+
+</TABLE>  <!-- end left hand table -->
+</TD>     <!-- end cell in main table holding left hand side -->
+
+<TD>      <!-- right hand cell -->
+<TABLE>   <!-- right hand table -->
+
+<TR ALIGN="CENTER">
+<TD><IMG SRC="<@s@HTMLPATH@>coax.png" WIDTH=327 HEIGHT=243
+     ALT="[Coax Cross-section]"></TD>
+</TR>
+
+<TR>
+<TD>
+
+<TABLE>  <!-- right hand entry table -->
+
+<TR>
+<TD>Inner Radius (A)</TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="a" VALUE="<@g@line->a/line->units_abct->sf@>" onChange="valsChanged()"></TD>
+<TD>
+<!-- A units menu -->
+<@s@cgi_units_menu_display(menu_abct)@>
+</TD>
+<TD><INPUT TYPE="SUBMIT" NAME="synth_a" VALUE="calc"></TD>
+</TR>
+
+<TR>
+<TD>Outer Radius (B)</TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="b" VALUE="<@g@line->b/line->units_abct->sf@>" onChange="valsChanged()"></TD>
+<TD>
+<!-- B units menu -->
+<INPUT TYPE="TEXT" DISABLED VALUE=" " NAME="entry_b">
+</TD>
+<TD><INPUT TYPE="SUBMIT" NAME="synth_b" VALUE="calc"></TD>
+</TR>
+
+<TR>
+<TD>Offset (C)</TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="c" VALUE="<@g@line->c/line->units_abct->sf@>" onChange="valsChanged()"></TD>
+<TD>
+<!-- C units menu -->
+<INPUT TYPE="TEXT" DISABLED VALUE=" " NAME="entry_c">
+</TD>
+<TD><INPUT TYPE="SUBMIT" NAME="synth_c" VALUE="calc"></TD>
+</TR>
+
+<TR>
+<TD>Shield Thickness (T)</TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="tshield" VALUE="<@g@line->tshield/line->units_abct->sf@>" onChange="valsChanged()"></TD>
+<TD>
+<!-- Tshield units menu -->
+<INPUT TYPE="TEXT" DISABLED VALUE=" " NAME="entry_t">
+</TD>
+<TD></TD>
+</TR>
+
+<TR>
+<TD>Line length (L)</TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="len" VALUE="<@g@line->len/line->units_len->sf@>" onChange="valsChanged()"></TD>
+<TD>
+<!-- length units menu -->
+<@s@cgi_units_menu_display(menu_len)@>
+</TD>
+<TD></TD>
+</TR>
+
+
+<TR>
+<TD><A HREF="<@s@HTMLPATH@>resistivity.html">Metal resistivity (RHOA)</A></TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="rhoa" 
+  VALUE="<@g@line->rho_a/line->units_rho->sf@>"
+  onChange="valsChanged()"></TD>
+<TD>
+<!-- Resistivity units menu -->
+<@s@cgi_units_menu_display(menu_rho)@>
+</TD>
+</TR>
+
+<TR>
+<TD><A HREF="<@s@HTMLPATH@>resistivity.html">Metal resistivity (RHOB)</A></TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="rhob"
+  VALUE="<@g@line->rho_b/line->units_rho->sf@>" 
+  onChange="valsChanged()"></TD>
+<TD>
+<INPUT TYPE="TEXT" DISABLED VALUE=" " NAME="entry_rhob">
+</TD>
+</TR>
+
+
+<TR>
+<TD><A HREF="<@s@HTMLPATH@>permitivity.html">Relative dielectric constant (Er)</A></TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="er" VALUE="<@g@line->er@>" onChange="valsChanged()"></TD>
+<TD></TD>
+<TD><INPUT TYPE="SUBMIT" NAME="synth_er" VALUE="calc"></TD>
+</TR>
+
+<TR>
+<TD><A HREF="<@s@HTMLPATH@>permitivity.html">Dielectric loss tangent (tand)</A></TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="tand" VALUE="<@g@line->tand@>" onChange="valsChanged()"></TD>
+<TD></TD>
+</TR>
+
+
+<TR>
+<TD>Frequency</TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="freq" VALUE="<@g@line->freq/line->units_freq->sf@>" onChange="valsChanged()"></TD>
+<TD>
+<!-- freq units menu -->
+<@s@cgi_units_menu_display(menu_freq)@>
+</TD>
+</TR>
+
+<TR>
+<TD><INPUT TYPE="SUBMIT" NAME="analyze" VALUE="Analyze">
+<INPUT TYPE="SUBMIT" NAME="reset" VALUE="Reset"></TD>
+</TR>
+
+<TR>
+<TD>Characteristic Impedance</TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="Ro" VALUE="<@g@line->z0@>" onChange="valsChanged()"></TD>
+<TD>[ohms]</TD>
+</TR>
+
+<TR>
+<TD>Electrical Length</TD>
+<TD><INPUT TYPE="TEXT" SIZE=10 NAME="elen" VALUE="<@g@line->elen@>" onChange="valsChanged()"></TD>
+<TD>[degrees]</TD>
+</TR>
+
+</TABLE>  <!-- The values table in the right side -->
+
+</TD>     <!-- The cell in the right hand table with the values table -->
+</TR>     <!-- The row in the right hand table with the values table -->
+</TABLE>  <!-- The right hand table -->
+
+</TD>     <!-- The cell with the right hand table -->
+</TR>     <!-- The row in the main table -->
+</TABLE>  <!-- The main table -->
+
+</FORM>
+

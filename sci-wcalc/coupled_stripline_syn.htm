@@ -1,0 +1,174 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<title></title>
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#3535c5" vlink="#700080">coupled_stripline_syn - Coupled stripline transmission line synthesis
+<h2>SYNOPSIS</h2>
+[w_out, s_out, l_out] = 
+coupled_stripline_syn(z0, k, z0e, z0o, w, s, h, l, tmet, rho, rough, er, tand, f, flag)
+<h2>PARAMETERS</h2>
+<h3>INPUT PARAMETERS</h3>
+<ul>
+<li>z0
+: desired characteristic impedance (Ohms)</li>
+<li>k
+: desired coupling coefficient</li>
+<li>z0e
+: desired even mode characteristic impedance (Ohms)</li>
+<li>z0o
+: desired odd mode characteristic impedance (Ohms)</li>
+<li>w
+: width of coupled stripline line (meters)</li>
+<li>s
+: spacing between coupled stripline lines (meters)</li>
+<li>h
+: substrate thickness (meters)</li>
+<li>l
+: length of coupled_stripline line (meters)</li>
+<li>tmet
+: metal thickness (meters)</li>
+<li>rho
+: resistivity of wire (relative to copper)</li>
+<li>rough
+: conductor surface roughness (meters-rms)</li>
+<li>er
+: substrate relative permitivitty</li>
+<li>tand
+: substrate loss tangent</li>
+<li>f
+: synthesis frequency (Hz)</li>
+<li>flag
+: indicates which parameters should be optimized
+    <ul>
+<li>flag=1 : synthesize based on characteristic impedance and coupling coefficient</li>
+<li>flag=0 : synthesize based on even and odd mode characteristic impedances</li>
+</ul>
+</li>
+</ul>
+<h3>OUTPUT VALUES</h3>
+<ul>
+<li>w_out
+: calculated metal width</li>
+<li>s_out
+: calculated gap</li>
+<li>l_out
+: calculated metal length</li>
+</ul>
+<h2>DESCRIPTION</h2>
+<p>
+Function to synthesize the physical dimenstions of a
+coupled stripline transmission line to achieve a desired characteristic
+impedance and electrical length.  The desired characteristic
+impedance and some of the physical
+dimensions of the coupled_stripline line are given as inputs and the
+remaining dimensions are calculated.
+
+The line may be specified either in terms of an even mode and
+odd mode characteristic impedance or a characteristic impedance and 
+coupling coefficient.
+
+The model accounts for dispersion (frequency dependent propagation
+velocity).
+
+<tt><pre>
+
+              |&lt;--W--&gt;|&lt;-S-&gt;|&lt;--W--&gt;|
+               _______       -------
+              | metal |     | metal | &lt;- rho,rough
+    ----------------------------------------------
+   (  dielectric                         /|\     (
+    )   er,tand                       H   |       )
+   (                                     \|/     (
+    ----------------------------------------------
+    XXXXXXXXXXXXXXXXXX ground XXXXXXXXXXXXXXXXXXXX
+
+</pre></tt></p>
+<h2>EXAMPLE</h2>
+<pre> // mils to meters conversion factor
+sf=25.4e-6;
+ // desired impedance 
+z0=75;
+ // desired coupling
+k=0.3;
+ // desired electrical length (degrees)
+elen=90;
+ // width (we'll synthesize this)
+w=0;
+ // spacing (we'll synthesize this)
+s=0;
+ // height
+h=15*sf;
+ // length
+l=1100*sf;
+ // metal thickness
+tmet=1.4*sf;
+ // resitivity of copper
+rho=1.72e-8;
+ // metal surface roughness
+rough=0.05*sf;
+ // relative dielectric constant
+er=4.5;
+ // loss tangent
+tand=0.01;
+ // frequency
+f=2.4e9;
+ // synthesize from z0 and k (instead
+flag=1;
+ // of z0e and z0o)
+
+[w_out,s_out,l_out] = ...
+    coupled_stripline_syn(z0,k,elen,w,s,h,l,tmet,rho,rough,er,tand,f,flag);
+disp(sprintf('w=%8.4g mils, s=%8.4g mils, l=%8.4g mils',w_out/sf,s_out/sf,l_out/sf));
+</pre>
+<h2>SEE ALSO</h2>
+<p><a href="air_coil_calc.htm">air_coil_calc</a><br>
+
+<a href="air_coil_syn.htm">air_coil_syn</a><br>
+
+<a href="coax_calc.htm">coax_calc</a><br>
+
+<a href="coax_syn.htm">coax_syn</a><br>
+
+<a href="coplanar_calc.htm">coplanar_calc</a><br>
+
+<a href="coplanar_syn.htm">coplanar_syn</a><br>
+
+<a href="coupled_microstrip_calc.htm">coupled_microstrip_calc</a><br>
+
+<a href="coupled_microstrip_syn.htm">coupled_microstrip_syn</a><br>
+
+<a href="coupled_stripline_calc.htm">coupled_stripline_calc</a><br>
+
+<a href="coupled_stripline_syn.htm">coupled_stripline_syn</a><br>
+
+<a href="ic_microstrip_calc.htm">ic_microstrip_calc</a><br>
+
+<a href="ic_microstrip_syn.htm">ic_microstrip_syn</a><br>
+
+<a href="microstrip_calc.htm">microstrip_calc</a><br>
+
+<a href="microstrip_syn.htm">microstrip_syn</a><br>
+
+<a href="stripline_calc.htm">stripline_calc</a><br>
+
+<a href="stripline_syn.htm">stripline_syn</a><br>
+
+</p>
+<h2>AUTHOR</h2>
+<p>
+Dan McMahill
+</p>
+<h2>BUGS</h2>
+<p>
+None known
+</p>
+<p>
+Please report any bugs on the <a href="http://wcalc.sf.net">
+Wcalc Sourceforge Project Page</a></p>
+</body>
+</html>

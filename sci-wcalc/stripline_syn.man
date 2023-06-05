@@ -1,0 +1,168 @@
+
+.\" Copyright (c), 2005 Dan McMahill
+.\" Do not edit this directly.  Edit the XML source file instead
+.\"
+
+.TH stripline_syn "" "" "Wcalc" "Wcalc Commands"
+.B stripline_syn
+- Symmetric stripline transmission line synthesis
+
+.SH SYNOPSIS
+
+[w_out, h_out, l_out, er_out] = 
+stripline_syn(z0, w, h, l, tmet, rho, rough, er, tand, f, flag)
+
+
+.SH INPUT PARAMETERS
+
+.TP 10
+z0
+: desired characteristic impedance (Ohms)
+.TP 10
+w
+: width of stripline line (meters)
+.TP 10
+h
+: substrate thickness (meters)
+.TP 10
+l
+: lentgh of stripline line (meters)
+.TP 10
+tmet
+: metal thickness (meters)
+.TP 10
+rho
+: resistivity of the metalization (relative to copper)
+.TP 10
+rough
+: conductor surface roughness (meters-rms)
+.TP 10
+er
+: substrate relative permitivitty
+.TP 10
+tand
+: substrate loss tangent
+.TP 10
+f
+: synthesis frequency (Hz)
+.TP 10
+flag
+: indicates which parameters should be optimized
+    
+.RS
+.TP 10
+flag=1
+: synthesize the metal width
+.TP 10
+flag=1
+: synthesize the substrate thickness
+.TP 10
+flag=2
+: synthesize the substrate dielectric constant
+.TP 10
+flag=3
+: synthesize the metal length
+.RE
+
+
+.SH OUTPUT VALUES
+
+.TP 10
+w_out
+: Calculated width of stripline line (meters)
+.TP 10
+h_out
+: Calculated height of stripline line (meters)
+.TP 10
+l_out
+: Calculated length of stripline line (meters)
+.TP 10
+er_out
+: Calculated substrate relative permitivitty of stripline line
+.SH DESCRIPTION
+
+Function to synthesize the physical dimenstions of a single
+stripline transmission line to achieve a desired characteristic
+impedance and electrical length.  The desired characteristic
+impedance and some of the physical
+dimensions of the stripline line are given as inputs and the
+remaining dimensions are calculated.
+
+
+
+.NF
+
+
+
+    XXXXXXXXXXXXXXXXX ground XXXXXXXXXXXXXXXXXXXXX
+    ----------------------------------------------
+   (  dielectric,er         \/           /|\     (
+    )             -------   --            |       )
+   (             | metal | Tmet           | H    (
+    )             -------   --            |       )
+   (             <---W--->  /\           \|/     (
+    ----------------------------------------------
+    XXXXXXXXXXXXXXXXX ground XXXXXXXXXXXXXXXXXXXXX
+
+
+
+.FI
+
+.SH EXAMPLE
+.nf
+
+.TP
+ // mils to meters conversion factor
+sf=25.4e-6;
+.TP
+ // desired impedance
+z0=75;
+.TP
+ // desired electrical length (degrees)
+elen=90;
+.TP
+ // width (we'll synthesize this)
+w=0;
+.TP
+ // height
+h=62*sf;
+.TP
+ // length
+l=1100*sf;
+.TP
+ // metal thickness
+tmet=1.4*sf;
+.TP
+ // resitivity
+rho=1.72e-8;
+.TP
+ // metal surface roughness
+rough=0.05*sf;
+.TP
+ // relative dielectric constant
+er=4.5;
+.TP
+ // loss tangent
+tand=0.01;
+.TP
+ // frequency
+f=2.4e9;
+.TP
+ // synthesize width
+flag=0;
+[w_out,h_out,l_out,er_out] = ...
+  stripline_syn(z0,elen,w,h,l,tmet,rho,rough,er,tand,f,flag);
+disp(sprintf('w=%g mils, l=%g mils',w_out/sf,l_out/sf));
+disp(sprintf('er=%g',er_out));
+disp(sprintf('z0=%g ohms, length=%g degrees',z0,elen));
+.fi
+.SH SEE ALSO
+stdio-wcalc(1),
+air_coil_calc(), air_coil_syn(), coax_calc(), coax_syn(), coplanar_calc(), coplanar_syn(), coupled_microstrip_calc(), coupled_microstrip_syn(), coupled_stripline_calc(), coupled_stripline_syn(), ic_microstrip_calc(), ic_microstrip_syn(), microstrip_calc(), microstrip_syn(), stripline_calc(), stripline_syn()
+.SH AUTHOR
+
+Dan McMahill
+
+.SH BUGS
+
+None known

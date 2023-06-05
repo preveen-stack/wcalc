@@ -1,0 +1,137 @@
+$Id: README.newmodel,v 1.15 2009/02/10 05:00:13 dan Exp $
+
+
+WARNING:  This is not finished yet....  But it needs to be so I can
+have a cleaner way to add new models.
+
+
+This file tries to document the procedure for adding a new model
+to the program.
+
+---------------------
+libwcalc
+---------------------
+
+For microstrip, add:
+
+microstrip.{c,h}    GUI independent file which contains all of the
+		    model information and equations.
+
+microstrip_loadsave.{c,h} =  file which contains the function to load/save
+			     microstrip data from/to files.
+
+add a placeholder entry in defaults.c and defaults.h.  Add code to
+make_defaults.c for generating the defaults setting.
+
+Add the new .c and .h files to Makefile.am
+
+Add microstrip to wcalc_load() in wcalc_loadsave.c
+
+Add microstrip in wcalc_loadsave.h
+
+---------------------
+pixmaps
+---------------------
+
+Create microstrip.obj and add it to Makefile.am
+Create microstrip_model.obj and add it to Makefile.am
+
+---------------------
+gtk-wcalc
+---------------------
+
+add microstrip_gui.{c,h}, and ${top_srcdir}/pixmaps/figure_microstrip.{ch} to Makefile.am
+
+edit wcalc.c
+  - add microstrip_gui.h
+  - add microstrip to global_model_init()
+  - add microstrip to wcalc_setup()
+
+
+Create microstrip.wc which is the defaults file for this model
+
+microstrip_gui.c =  file which contains the methods to interface the
+		    main program to the microstrip calculations.
+                    NOTE:  Use bars_gui.c as the example.
+                    They widget layout is done in an easier way where
+                    the code is organized in the same order as the form
+                    is done visually.  Variables are used to keep
+                    track of row/column in the table instead of hard
+                    coding them.  It makes it _much_ easier to rearrange
+                    the forms.  A number of convenience functions are
+		    used to take out a huge amount of redundant code
+		    that the other gui's are stuck with (since they 
+		    were written earlier).
+
+The microstrip_gui.{c,h} should define an object of type
+'microstrip_gui' that provides the following methods:
+
+->load(FILE*)		loads the data from a file.
+->save(FILE*)		saves the data to a file.
+->analyze(void)		performs an analysis
+->synthesize(void)	performs a synthesis
+->display(void)		updates the display
+->print(void)		generates postscript for the printout
+->dump(void)            returns a GList of hardcopy data
+
+Window Creation
+---------------
+
+When the window associated with the model is opened, it must be
+added to the global list of currently open windows:
+	
+  window_list = g_slist_append(window_list, wcalc->window);
+
+
+Window Removal
+--------------
+
+When the window associated with the model is destroyed, it must be
+removed from the global list of currently open windows:
+	
+  window_list = g_slist_remove(window_list,window);
+
+
+---------------------
+cgi-wcalc
+---------------------
+add microstrip.cgi.c
+add microstrip.html
+add both to Makefile.am
+
+---------------------
+htdocs
+---------------------
+
+add microstrip.shtml
+
+add microstrip.shtml to left_column.incl
+
+add microstrip.shtml to SHTML_IN in Makefile.am
+
+add microstrip to cgi-wcalc.shtml
+
+---------------------
+sci-wcalc
+---------------------
+
+add microstrip_{calc,syn}.{c,xml,tst}
+
+add to mex.mk
+
+add to Makefile.am
+
+add to wcalc_test.sci.in
+
+add to see_also.xml
+
+---------------------
+sci-wcalc
+---------------------
+
+add microstrip.{dat,ref}
+
+add to Makefile.am and tests.list
+
+edit main.c to hook up the functions
+

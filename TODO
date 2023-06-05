@@ -1,0 +1,49 @@
+$Id: TODO,v 1.6 2007/11/30 01:10:12 dan Exp $
+
+- finish spanish translation for gtk-wcalc
+
+- testing!
+
+- find a good way to add regression tests to the octave/matlab/scilab
+  frontend
+
+- find a good way to add regression tests to the cgi frontend
+
+- come up with an "acceptance" plan for doing quality control on the gtk
+  frontend.
+
+- Air Coil.  Read RF Design, Jan 1998 and Applied Microwave & Wireless, 
+  Nov/Dec 1997 for transmission line based model for helical coils.
+  Maybe get a better Q/SRF prediction? 
+
+- Improve the coplanar waveguide model.  The model from Wadell's book
+  has been implemented and compared to HP's AppCAD, but HP doesn't give
+  a reference.  
+
+- Research and add spiral inductors with the ability to write out a fasthenry
+  model
+
+- End correction for stripline?
+
+- End correction for coax?
+
+- Maybe start adding filter toolbox stuff here?
+
+- Better checking of inputs to avoid problems when someone asks for
+  900 GHz calculations or other sillyness.
+
+- rework the air_coil, coax, and ic_microstrip gtk frontends to use
+  x,y variables to keep track of the position of widgets in the table.
+  This will make form modifications much easier.  The other gtk frontends
+  are ok already.
+
+- Add the ability to write out a fasthenry model for some of the structures.
+
+- Figure out how to use LC (finite difference time domain, FDTD, electromagnetic
+  simulator) and script it to be able to generate some plots of impedance and
+  loss for various structues.  This would provide the basis for some accuracy
+  checking of wcalc.  
+
+- Add the ability to write out a LC model for the structures.
+
+

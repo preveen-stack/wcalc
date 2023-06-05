@@ -1,0 +1,177 @@
+
+.\" Copyright (c), 2005 Dan McMahill
+.\" Do not edit this directly.  Edit the XML source file instead
+.\"
+
+.TH ic_microstrip_syn "" "" "Wcalc" "Wcalc Commands"
+.B ic_microstrip_syn
+- Integrated circuit microstrip transmission line synthesis
+
+.SH SYNOPSIS
+
+[w_out, h_out, tox_out, l_out] = 
+ic_microstrip_syn(z0, w, h, l, tmet, rho, rough, er, tand, f, flag)
+
+
+.SH INPUT PARAMETERS
+
+.TP 10
+z0
+: desired characteristic impedance (Ohms)
+.TP 10
+w
+: width of ic_microstrip line (meters)
+.TP 10
+h
+: substrate thickness (meters)
+.TP 10
+l
+: lentgh of ic_microstrip line (meters)
+.TP 10
+tmet
+: metal thickness (meters)
+.TP 10
+rho
+: resistivity of wire (relative to copper)
+.TP 10
+rough
+: conductor surface roughness (meters-rms)
+.TP 10
+er
+: substrate relative permitivitty
+.TP 10
+tand
+: substrate loss tangent
+.TP 10
+f
+: synthesis frequency (Hz)
+.TP 10
+flag
+: indicates which parameters should be optimized
+    
+.RS
+.TP 10
+flag=1
+: synthesize the metal width
+.TP 10
+flag=1
+: synthesize the substrate thickness
+.TP 10
+flag=2
+: synthesize the oxide thickness
+.RE
+
+
+.SH OUTPUT VALUES
+
+.TP 10
+w_out
+: calculated metal width
+.TP 10
+h_out
+: calculated substrate thickness
+.TP 10
+tox_out
+: calculated oxide thickness
+.TP 10
+l_out
+: calculated metal length
+.SH DESCRIPTION
+
+Function to synthesize the physical dimenstions of a single
+ic_microstrip transmission line to achieve a desired characteristic
+impedance and electrical length.  The desired characteristic
+impedance and some of the physical
+dimensions of the ic_microstrip line are given as inputs and the
+remaining dimensions are calculated.
+
+The model accounts for dispersion (frequency dependent propagation
+velocity).
+
+
+.NF
+
+
+
+                 |<--W-->|
+                  _______    
+                 | metal | <- tmet,rho,rough
+    ----------------------------------------------
+   {**************  Oxide (tox,eox) **************
+    ----------------------------------------------
+   (  substrate                          /|\     (
+    )   es,sigmas                     H   |       )
+   (                                     \|/     (
+    ----------------------------------------------
+    XXXXXXXXXXXXXXXXXX ground XXXXXXXXXXXXXXXXXXXX
+
+
+
+
+.FI
+
+.SH EXAMPLE
+.nf
+
+.TP
+ // desired impedance
+z0=75;
+.TP
+ // desired electrical length (degrees)
+elen=90;
+.TP
+ // micron to meters conversion factor
+sf=1.0e-6;
+.TP
+ // width 
+w=160e-6;
+.TP
+ // length
+l=1000e-6;
+.TP
+ // oxide thickness
+tox=1.0e-6;
+.TP
+ // oxide relative dielectric constant
+eox=4.0;
+.TP
+ // substrate thickness
+h=250e-6;
+.TP
+ // substrate relative dielectric constant
+es=11.8;
+.TP
+ // substrate conductivity (1/(ohm-m))
+sigmas=10;
+.TP
+ // metal thickness
+tmet=1.6e-6;
+.TP
+ // metal resitivity (ohm-m)
+rho=3e-8;
+.TP
+ // metal surface roughness
+rough=0;
+.TP
+ // frequency
+f=2.4e9;
+.TP
+ // synthesize width
+flag=0;
+[w_out,h_out,tox_out,l_out] = ...
+    ic_microstrip_syn(z0,elen,w,l,tox,eox,h,es,sigmas,tmet,rho,rough,f,flag);
+disp(sprintf('w   = %8.3g um', w_out*1e6));
+disp(sprintf('h   = %8.3g um', h_out*1e6));
+disp(sprintf('tox = %8.3g um', tox_out*1e6));
+disp(sprintf('l   = %8.3g um', l_out*1e6));
+.fi
+.SH SEE ALSO
+stdio-wcalc(1),
+air_coil_calc(), air_coil_syn(), coax_calc(), coax_syn(), coplanar_calc(), coplanar_syn(), coupled_microstrip_calc(), coupled_microstrip_syn(), coupled_stripline_calc(), coupled_stripline_syn(), ic_microstrip_calc(), ic_microstrip_syn(), microstrip_calc(), microstrip_syn(), stripline_calc(), stripline_syn()
+.SH AUTHOR
+
+Dan McMahill
+
+.SH BUGS
+
+None known

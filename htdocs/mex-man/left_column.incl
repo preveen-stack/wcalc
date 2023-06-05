@@ -1,0 +1,119 @@
+<!-- $Id: left_column.incl,v 1.22 2009/02/28 03:33:02 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2005, 2006 Dan McMahill, All rights reserved. -->
+<tr>
+  <td valign="top">
+
+  <table width="100%" cellspacing=0 cellpadding=0 border=0>
+  <tr>
+  <td>
+  <img src="../logo.png" width="197" height="161"
+   alt="Wcalc Logo">
+  </td></tr>
+  </table>
+
+  <br>
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Information</b>
+    </font>
+    </td></tr>
+   <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../about.html">About Wcalc</a><br>
+	&nbsp;<a href="../bugs.html">Reporting bugs</a><br>
+	&nbsp;<a href="../projects.html">Current projects</a><br>
+	&nbsp;<a href="../obtaining.html">Obtaining Wcalc</a><br>
+	&nbsp;<a href="../tech.html">Technical Notes</a><br>
+	&nbsp;<a href="../faq.html">Wcalc F.A.Q.</a><br>
+	&nbsp;<a href="../index.html">Wcalc Home</a><br>
+	&nbsp;<a href="../http://sourceforge.net/projects/wcalc">Wcalc Sourceforge Project</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Models</b>
+    </font>
+    </td></tr>
+    <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../air_coil.html">Air Core Solenoid Inductor</a><br>
+	&nbsp;<a href="../bars.html">Parallel Rectangular Bars Inductance</a><br>
+	&nbsp;<a href="../coax.html">Coaxial Transmission Line</a><br>
+	&nbsp;<a href="../coplanar.html">Coplanar Waveguide</a><br>
+	&nbsp;<a href="../coupled_microstrip.html">Coupled Microstrip</a><br>
+	&nbsp;<a href="../coupled_stripline.html">Coupled Stripline</a><br>
+	&nbsp;<a href="../ic_microstrip.html">Integrated Circuit Microstrip</a><br>
+	&nbsp;<a href="../microstrip.html">Microstrip</a><br>
+	&nbsp;<a href="../parallel_rc.html">Series/Parallel RC Network</a><br>
+	&nbsp;<a href="../parallel_rl.html">Series/Parallel RL Network</a><br>
+	&nbsp;<a href="../stripline.html">Stripline</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Frontends</b>
+    </font>
+    </td></tr>
+    <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../cgi-wcalc.html">CGI-Wcalc (Web Interface)</a><br>
+	&nbsp;<a href="../gtk-wcalc.html">GTK-Wcalc (GUI Interface)</a><br>
+	&nbsp;<a href="../mex-wcalc.html">MEX-Wcalc (Matlab Interface)</a><br>
+	&nbsp;<a href="../octave-wcalc.html">Octave-Wcalc (Octave Interface)</a><br>
+	&nbsp;<a href="../sci-wcalc.html">SCI-Wcalc (Scilab Interface)</a><br>
+	&nbsp;<a href="../stdio-wcalc.html">STDIO-Wcalc (Simple stdio Interface)</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Misc. Info.</b>
+    </font>
+    </td></tr>
+    <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../permeability.html">Permeabilities</a><br>
+	&nbsp;<a href="../permitivity.html">Permitivities</a><br>
+	&nbsp;<a href="../resistivity.html">Resistivities</a><br>
+	&nbsp;<a href="../units.html">Unit Conversion Factors</a><br>
+	&nbsp;<a href="../AWG.html">Wire Sizes</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  </td>
+</tr>
+

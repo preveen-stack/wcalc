@@ -1,0 +1,72 @@
+// $Id: demo.sce,v 1.3 2009/01/11 04:22:23 dan Exp $
+//
+// Copyright (c) 2001, 2009 Dan McMahill
+// All rights reserved.
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; version 2 of the License.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+
+// execute this script demonstrate the wcalc interfaces.
+//
+//   -->  exec('demo.sce');
+//
+
+// -----------------------------------------------
+// Air Core Inductor Analysis
+// -----------------------------------------------
+
+sf   = 25.4e-3; // inches to meters conversion
+N    = 5;       // # of turns
+len  = 0;       // length of solenoid (we'll use fill instead)
+fill = 1.2;     // length/close wound length ratio
+AWG  = 22;      // wire size (AWG)
+rho=1;          // not used yet
+dia  = 0.14*sf; // inside diameter of coil
+f    = 10e6;    // operating frequency (Hz)
+flag = 1;       // use fill to find length
+[L,Qf,SRF,len_out,fill_out] = ...
+  air_coil_calc(N,len,fill,AWG,rho,dia,f,flag);
+
+printf("L   = %g nH\n",L*1e9);
+printf("Qf  = %g @ %g MHz\n",Qf,f/1e6);
+printf("SRF = %g MHz\n",SRF/1e6);
+
+N=3:12;
+[L,Qf,SRF,len_out,fill_out] = ...
+  air_coil_calc(N,len,fill,AWG,rho,dia,f,flag);
+xbasc(); xselect();
+plot2d(N,L*1e9);
+xgrid(3);
+xtitle('Inductance vs. Number of Turns.  0.14 inch I.D.','N','nH');
+
+// -----------------------------------------------
+// Air Core Inductor Synthesis
+// -----------------------------------------------
+
+// synthesize N and len with N minimized
+L    = 220e-9;  // Desired inductance
+AWG  = 22;      // wire size (AWG)
+dia  = 0.14*sf; // inside diameter of coil
+f    = 50e6;    // operating frequency (Hz)
+
+
+
+// synthesize len with N fixed
+L    = 220e-9;  // Desired inductance
+N    = 8;       // Fixed # of turns
+AWG  = 22;      // wire size (AWG)
+dia  = 0.14;    // inside diameter of coil
+f    = 50e6;    // operating frequency (Hz)
+
+

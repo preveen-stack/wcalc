@@ -1,0 +1,124 @@
+coplanar_syn()                  Wcalc Commands                  coplanar_syn()
+
+ccooppllaannaarr__ssyynn - Single coplanar transmission line synthesis
+
+SSYYNNOOPPSSIISS
+       [w_out,  h_out,  l_out,  er_out] = coplanar_syn(z0, w, h, l, tmet, rho,
+       rough, er, tand, f, flag)
+
+IINNPPUUTT PPAARRAAMMEETTEERRSS
+       z0        : desired characteristic impedance (Ohms)
+
+       w         : width of coplanar line (meters)
+
+       h         : substrate thickness (meters)
+
+       l         : lentgh of coplanar line (meters)
+
+       tmet      : metal thickness (meters)
+
+       rho       : resistivity of the metalization (relative to copper)
+
+       rough     : conductor surface roughness (meters-rms)
+
+       er        : substrate relative permitivitty
+
+       tand      : substrate loss tangent
+
+       f         : synthesis frequency (Hz)
+
+       flag      : indicates which parameters should be optimized
+
+                 flag=1    : synthesize the metal width
+
+                 flag=1    : synthesize the substrate thickness
+
+                 flag=2    : synthesize the substrate dielectric constant
+
+                 flag=3    : synthesize the metal length
+
+OOUUTTPPUUTT VVAALLUUEESS
+       w_out     : Calculated width of coplanar line (meters)
+
+       h_out     : Calculated height of coplanar line (meters)
+
+       l_out     : Calculated length of coplanar line (meters)
+
+       er_out    : Calculated substrate relative permitivitty of coplanar line
+
+DDEESSCCRRIIPPTTIIOONN
+       Function  to  synthesize  the physical dimenstions of a single coplanar
+       transmission line to achieve a  desired  characteristic  impedance  and
+       electrical  length.   The  desired characteristic impedance and some of
+       the physical dimensions of the coplanar line are given  as  inputs  and
+       the remaining dimensions are calculated.
+
+                        |<--W-->|
+                         _______
+                        | metal | <- rho,rough
+           ----------------------------------------------
+          (  dielectric                         /|     (
+           )   er,tand                       H   |       )
+          (                                     /     (
+           ----------------------------------------------
+           XXXXXXXXXXXXXXXXXX ground XXXXXXXXXXXXXXXXXXXX
+
+EEXXAAMMPPLLEE
+        // mils to meters conversion factor
+              sf=25.4e-6;
+
+        // desired impedance
+              z0=75;
+
+        // desired electrical length (degrees)
+              elen=90;
+
+        // width (we'll synthesize this)
+              w=0;
+
+        // height
+              h=62*sf;
+
+        // length
+              l=1100*sf;
+
+        // metal thickness
+              tmet=1.4*sf;
+
+        // resitivity
+              rho=1.72e-8;
+
+        // metal surface roughness
+              rough=0.05*sf;
+
+        // relative dielectric constant
+              er=4.5;
+
+        // loss tangent
+              tand=0.01;
+
+        // frequency
+              f=2.4e9;
+
+        // synthesize width
+              flag=0;
+              [w_out,h_out,l_out,er_out] = ...
+                coplanar_syn(z0,elen,w,h,l,tmet,rho,rough,er,tand,f,flag);
+              disp(sprintf('w=%g mils, l=%g mils',w_out/sf,l_out/sf));
+              disp(sprintf('er=%g',er_out));
+              disp(sprintf('z0=%g ohms, length=%g degrees',z0,elen));
+
+SSEEEE AALLSSOO
+       stdio-wcalc(1),     air_coil_calc(),    air_coil_syn(),    coax_calc(),
+       coax_syn(), coplanar_calc(), coplanar_syn(), coupled_microstrip_calc(),
+       coupled_microstrip_syn(),         coupled_stripline_calc(),        cou-
+       pled_stripline_syn(),    ic_microstrip_calc(),     ic_microstrip_syn(),
+       microstrip_calc(), microstrip_syn(), stripline_calc(), stripline_syn()
+
+AAUUTTHHOORR
+       Dan McMahill
+
+BBUUGGSS
+       None known
+
+Wcalc                                                           coplanar_syn()

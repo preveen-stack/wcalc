@@ -1,0 +1,31 @@
+wcalc-1.0A Functions
+
+    air_coil_calc - Single layer air core solenoid inductor analysis
+    air_coil_syn - Single layer air core solenoid inductor synthesis
+    bars_calc - Self and mutual inductance of a pair of parallel rectangular
+    bars
+    coax_calc - Coaxial transmission line analysis
+    coax_syn - Coaxial transmission line synthesis
+    coplanar_calc - Symmetric coplanar transmission line analysis
+    coplanar_syn - Single coplanar transmission line synthesis
+    coupled_microstrip_calc - Coupled microstrip transmission line analysis
+    coupled_microstrip_syn - Coupled microstrip transmission line synthesis
+    coupled_stripline_calc - Coupled stripline transmission line analysis
+    coupled_stripline_syn - Coupled stripline transmission line synthesis
+    ic_microstrip_calc - Integrated circuit microstrip transmission line
+    analysis
+    ic_microstrip_syn - Integrated circuit microstrip transmission line
+    synthesis
+    microstrip_calc - Symmetric microstrip transmission line analysis
+    microstrip_syn - Single microstrip transmission line synthesis
+    parallel_rc_p2s - Convert Parallel RC Network into Equivalent Series RC
+    Network
+    parallel_rc_s2p - Convert Series RC Network into Equivalent Parallel RC
+    Network
+    parallel_rl_p2s - Convert Parallel RL Network into Equivalent Series RL
+    Network
+    parallel_rl_s2p - Convert Series RL Network into Equivalent Parallel RL
+    Network
+    stripline_calc - Symmetric stripline transmission line analysis
+    stripline_syn - Symmetric stripline transmission line synthesis
+

@@ -1,0 +1,132 @@
+#! /usr/bin/awk -f
+#
+# $Id: eps2c,v 1.3 2008/11/29 20:42:45 dan Exp $
+#
+# Copyright (c) 2001, 2002 Dan McMahill
+# All rights reserved.
+#
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+# 
+
+
+#
+#
+# This script operates on an EPS file to produce a C program which
+# will print the EPS file along with some surrounding stuff to handle
+# the bounding box and properly enclose the EPS file.
+#
+#
+# Typical usage would be:
+#
+#    eps2c fname=print_ps foo.eps > foo.c
+#
+# The generated C code will be a function
+#
+# void print_ps(FILE *);
+#
+#
+
+
+BEGIN{
+    printf("/* $Id: eps2c,v 1.3 2008/11/29 20:42:45 dan Exp $ */\n");
+    printf("\n");
+    printf("/* ********* Automatically Generated.  Do not edit! ******** */\n");
+    printf("/* *********         Created with eps2c            ******** */\n\n");
+    got_bbox=0;
+    out_buf="";
+    
+
+    if ( fname == "" ){
+# provide a default for the function name
+	fname = "eps_print";
+    }
+}
+
+/^%%BoundingBox:/ {
+    if (!got_bbox){
+	bbox_llx = $2;
+	bbox_lly = $3;
+	bbox_urx = $4;
+	bbox_ury = $5;
+	
+	got_bbox=1;
+
+  print "#include <stdio.h>\n\n";
+  print "void "fname"(FILE *fp)\n{";
+  print "fprintf(fp,\"%% We are currently where the top center of the figure should be.\\n\");";
+  print "fprintf(fp,\"%% First figure out where the text will be when we continue\\n\");";
+  print "fprintf(fp,\"%% after the figure\\n\");";
+  print "fprintf(fp,\"%%\\n\");";
+  print "fprintf(fp,\"currentpoint "bbox_ury" "bbox_lly" sub sub\\n\");";
+  print "fprintf(fp,\"gsave\\n\");";
+  print "fprintf(fp,\"currentpoint pop "bbox_llx" "bbox_urx" add 2 div sub\\n\");";
+
+  print "fprintf(fp,\"currentpoint exch pop "bbox_ury" sub \\n\");";
+  print "fprintf(fp,\"translate\\n\");";
+  print "fprintf(fp,\"%%\\n\");";
+  print "fprintf(fp,\"%%include the EPS file\\n\");";
+  print "fprintf(fp,\"%%\\n\");";
+  print "fprintf(fp,\"BEGINEPSFILE\\n\");";
+  print "fprintf(fp,\"\\n\");";
+
+	print out_buf;
+    }
+}
+
+{
+  if(!got_bbox){
+      out_buf = out_buf "\n"  escape_line($0);
+  }
+  else{
+      print escape_line($0);
+  }
+}
+
+END{
+    if (!got_bbox){
+	printf("ERROR:  Failed to extract bounding box\n") > "/dev/stderr";
+	close("/dev/stderr");
+	exit 1;
+    }
+    else{
+
+	print "fprintf(fp,\"\\n\");";
+	print "fprintf(fp,\"ENDEPSFILE\\n\");";
+	print "fprintf(fp,\"grestore\\n\");";
+	print "fprintf(fp,\"moveto\\n\");";
+
+	printf("\n}\n");
+	printf("/* *********        End of Generated Code           ******** */\n\n");
+    }
+}
+
+function escape_line(line){
+# get rid of those %%PageBoundingBox comments
+  gsub(/^%%PageBoundingBox.*$/,"",line);
+
+# escape all backslashes
+  gsub(/\\/,"\\\\",line);
+
+# escape all double quotes
+  gsub(/\"/,"\\\"",line);
+
+# escape all percents
+  gsub(/%/,"%%",line);
+
+  line = sprintf("fprintf(fp,\"%s\\n\");",line);
+
+  return(line);
+}
+

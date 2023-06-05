@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: coupled_stripline.shtml,v 1.3 2009/02/11 00:00:23 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004, 2006
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<title>Wcalc Coupled Stripline Model</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!--#include virtual="page_start.incl"-->
+
+<!-- The main action area -->
+    <center>
+    <font face="helvetica, arial" size="+2">
+      Wcalc Coupled Stripline Model
+    </font>
+    <br>
+    <br>
+    <img src="coupled_stripline.png"
+    alt="Coupled Stripline Image" width="433" height="168" hspace="10" vspace="5">
+    </center>
+    
+    <font face="helvetica, arial">
+    <HR>
+    <H2><A NAME="References">Selected References</A></H2>
+    <OL>
+      <LI>
+	S. B. Cohn, "Shielded Coupled-Strip Transmission Line",
+	<em>IRE Transactions on Microwave Theory and Techniques</em>,
+	Vol MTT-3, No. 10, October 1955, pp. 29-38.
+      </LI>
+            
+    </OL>
+
+    <HR>
+    <H2><A NAME="Comments">Comments</A></H2>
+    <P>
+    In the special case where the traces are infinitely thin, the coupled stripline
+    structure has an exact closed form solution for the even and odd mode impedances.
+    These solutions are given by Cohn in the above reference.  When the traces are not
+    infinitely thin, Cohn gives a modified expression which is approximate to correct
+    for the finite thickness.
+    </P>
+
+    <P>
+    Conductor losses are determined using Wheelers incremental inductance rule.  For low
+    frequencies, an approximate interpolation function has been used to interpolate between
+    the DC resistance and the skin effect limited resistance.
+    </P>
+    </font>
+
+  </td>
+
+</tr>
+
+<!-- The left hand column -->
+<!--#include virtual="left_column.incl"-->
+
+</table>
+<p>
+
+<!--#include virtual="main_footer.incl"-->
+
+
+</body>
+</html>

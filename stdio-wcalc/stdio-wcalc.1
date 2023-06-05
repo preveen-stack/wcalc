@@ -1,0 +1,109 @@
+.\"	$Id: stdio-wcalc.1,v 1.7 2009/01/11 05:49:33 dan Exp $
+.\"
+.\" Copyright (c), 2004, 2009 Dan McMahill <mcmahill@alum.mit.edu>
+.\" All rights reserved.
+.\"
+.\" This code is derived from software written by Dan McMahill
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and.\"or other materials provided with the distribution.
+.\" 3. All advertising materials mentioning features or use of this software
+.\"    must display the following acknowledgement:
+.\"        This product includes software developed by Dan McMahill
+.\"  4. The name of the author may not be used to endorse or promote products
+.\"     derived from this software without specific prior written permission.
+.\" 
+.\"  THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+.\"  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+.\"  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+.\"  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+.\"  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+.\"  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+.\"  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+.\"  AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+.\"  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\"  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\"  SUCH DAMAGE.
+.\"
+
+.TH STDIO-WCALC 1
+
+.SH NAME
+.B stdio-wcalc
+\- Transmission line analysis/synthesis calculator.
+
+.SH SYNOPSIS
+.B stdio-wcalc
+.RB [ " \-v|\-\-verbose " ]
+[
+.I "file \&..."
+]
+.br
+.B stdio-wcalc
+.RB [ " \-h|\-\-help " ]
+.br
+.B stdio-wcalc
+.RB [ " \-V|\-\-version " ]
+
+.SH DESCRIPTION
+The
+.B stdio\-wcalc
+program is a simple standard input/output interface to libwcalc which is
+the numerical engine for the wcalc
+program.  The input is read from the standard input on a line
+at a time basis.  Each line consists of a command followed by the 
+numerical arguments.
+
+The analysis and synthesis functions supported by
+.B stdio\-wcalc
+are the same as those in the scilab, octave, and matlab frontends
+to wcalc.  Please refer to the man pages listed at the end of this
+man page for details on each of the supported functions.
+The syntax used by
+.B stdio\-wcalc
+is slightly different than scilab/octave/matlab.
+Instead of [a,b,c] = somefn(x,y,z) as you
+would use in scilab, octave, or matlab, you simply enter
+somefn x y z
+as the input line to
+.B stdio\-wcalc
+and the standard output will be
+a b c
+.
+
+In addition to the analysis and synthesis functions,
+.B stdio\-wcalc
+supports the "version" command which returns the current version
+of the program.  
+
+.SH SEE ALSO
+wcalc(1),
+air_coil_calc(n),
+air_coil_syn(n),
+bars(n),
+coax_calc(n),
+coax_syn(n),
+coupled_microstrip_calc(n),
+coupled_microstrip_syn(n),
+ic_microstrip_calc(n),
+ic_microstrip_syn(n),
+microstrip_calc(n),
+microstrip_syn(n),
+stripline_calc(n),
+stripline_syn(n)
+
+.SH AUTHORS
+.B Wcalc
+was written by Dan McMahill <mcmahill@alum.mit.edu>
+
+.SH BUGS
+Please report any on the Wcalc Sourceforge project website at http://wcalc.sf.net
+
+
+

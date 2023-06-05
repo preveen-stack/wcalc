@@ -1,0 +1,39 @@
+// $Id: wcalc-demo.dem,v 1.4 2009/01/11 04:22:24 dan Exp $
+//
+// Copyright (c) 2002, 2005, 2009 Dan McMahill
+// All rights reserved.
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; version 2 of the License.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+mode(-1)
+oldln=lines();lines(0)
+deff('[]=demoex(num)','execstr(demolist(num,2))')
+deff('[]=notimpl()','printf(""Demo not implemented yet\n"");')
+
+
+demolist=[
+    'Air Core Inductor Analysis','air_coil_calc.dem';
+    'Parallel Rectangular Bars Analysis','bars_calc.dem';
+    'Coupled Microstrip Synthesis','xbasc();notimpl();'];
+
+while %t then
+  num=x_choose(demolist(:,1),'Wcalc Demos');
+  if num==0 then 
+    lines(oldln(1))
+    return
+  else
+    demoex(num)
+  end,
+end
+

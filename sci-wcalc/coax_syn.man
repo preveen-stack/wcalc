@@ -1,0 +1,152 @@
+
+.\" Copyright (c), 2005 Dan McMahill
+.\" Do not edit this directly.  Edit the XML source file instead
+.\"
+
+.TH coax_syn "" "" "Wcalc" "Wcalc Commands"
+.B coax_syn
+- Coaxial transmission line synthesis
+
+.SH SYNOPSIS
+
+[a_out, b_out, c_out, er_out, len] = 
+coax_syn(a, b, c, t, rho_a, rho_b, er, tand, len, f, flag)
+
+
+.SH INPUT PARAMETERS
+
+.TP 10
+a
+: radius of inner conductor (meters)
+.TP 10
+b
+: inner radius of outer conductor (meters)
+.TP 10
+c
+: offset of the inner conductor from the center (meters)
+.TP 10
+t
+: thickness of shield (meters)
+.TP 10
+rho_a
+: resistivity of inner conductor (ohms/meter)
+.TP 10
+rho_b
+: resistivity of outer conductor (ohms/meter)
+.TP 10
+er
+: relative permitivitty of dielectric
+.TP 10
+tand
+: loss tangent of dielectric
+.TP 10
+len
+: physical length of line (meters)
+.TP 10
+f
+: operating frequency (Hertz)
+.TP 10
+flag
+: indicates which parameters should be optimized
+    
+.RS
+.TP 10
+flag=0
+: synthesize a
+.TP 10
+flag=1
+: synthesize b
+.TP 10
+flag=2
+: synthesize c
+.TP 10
+flag=3
+: synthesize er
+.RE
+
+
+.SH OUTPUT VALUES
+
+.TP 10
+a_out
+: synthesized radius of inner conductor (meters)
+.TP 10
+b_out
+: synthesized inner radius of outer conductor (meters)
+.TP 10
+c_out
+: synthesized offset of the inner conductor from the center (meters)
+.TP 10
+er_out
+: synthesized relative permitivitty of dielectric
+.TP 10
+len
+: synthesized physical length of line (meters)
+.SH DESCRIPTION
+
+Function to synthesize the physical parameters of a
+coaxial transmission line to achieve a given set of
+electrical characteristics.
+
+.SH EXAMPLE
+.nf
+
+.TP
+ // mils to meters conversion factor
+sf=25.4e-6;
+.TP
+ // desired characteristic impedance
+z0=75.0;
+.TP
+ // desired electrical length (degrees)
+elen=90.0;
+.TP
+ // radius of inner conductor
+a=10.0*sf;
+.TP
+ // inner radius of outer conductor
+b=100.0*sf;
+.TP
+ // offset of inner conductor
+c=0*sf;
+.TP
+ // thickness of outer conductor
+t=5.0*sf;
+.TP
+ // resistivity of inner conductor
+rho_a=3.5e-8;
+.TP
+ // resistivity of outer conductor
+rho_b=rho_a;
+.TP
+ // relative permitivitty of dielectric
+er=9.5;
+.TP
+ // dielectric loss tangent
+tand=0.01;
+.TP
+ // 100 MHz operation
+f=100e6;
+.TP
+ // synthesize b
+flag=1;
+[a,b,c,er,len] = ...
+   coax_syn(z0,elen,a,b,c,t,rho_a,rho_b,er,tand,f,flag);
+disp(sprintf('z0   = %g Ohms',z0));
+disp(sprintf('elen = %g degrees',elen));
+disp(sprintf('a    = %g m',a));
+disp(sprintf('b    = %g m',b));
+disp(sprintf('c    = %g m',c));
+disp(sprintf('er   = %g ',er));
+disp(sprintf('len  = %g m',len));
+.fi
+.SH SEE ALSO
+stdio-wcalc(1),
+air_coil_calc(), air_coil_syn(), coax_calc(), coax_syn(), coplanar_calc(), coplanar_syn(), coupled_microstrip_calc(), coupled_microstrip_syn(), coupled_stripline_calc(), coupled_stripline_syn(), ic_microstrip_calc(), ic_microstrip_syn(), microstrip_calc(), microstrip_syn(), stripline_calc(), stripline_syn()
+.SH AUTHOR
+
+Dan McMahill
+
+.SH BUGS
+
+None known

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "man.dtd" [
+<!ENTITY see_also SYSTEM "see_also.xml">
+]>
+<TOP>
+<MAN>
+<!-- $Id: air_coil_calc.xml,v 1.6 2008/11/29 20:42:28 dan Exp $ -->
+<!--
+    Copyright (C) 2001, 2004, 2005, 2006 Dan McMahill
+    All rights reserved.
+   
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    
+-->
+
+<NAME>air_coil_calc</NAME>
+
+<SHORTDESCR>Single layer air core solenoid inductor analysis
+</SHORTDESCR>
+
+<SYNOPSIS>
+[L, Q, SRF, len_out, fill_out, Lmax] = air_coil_calc(N,len,fill,AWG,rho,dia,freq,flag);
+</SYNOPSIS>
+
+<PARAMETERS>
+ <RHS name="N">Number of turns</RHS>
+ <RHS name="len">length of the coil (meters)</RHS>
+ <RHS name="fill">ratio of coil length to closewound length</RHS>
+ <RHS name="AWG">wire size (American Wire Gauge)</RHS>
+ <RHS name="rho">resistivity of wire (ohm-m)</RHS>
+ <RHS name="dia">inside diameter of coil (meters)</RHS>
+ <RHS name="freq">analysis frequency (Hertz)</RHS>
+ <RHS name="flag">used to calculate coil length.
+ <ENUM>
+ <ITEM name="flag=0">the length given by len is used.</ITEM>
+ <ITEM name="flag=1">the length is calculated from the wire size,
+ number of turns and fill input.</ITEM>
+ </ENUM>
+ </RHS>
+
+ <LHS name="L">calculated inductance (Henries)</LHS>
+ <LHS name="Q">calculated quality factor</LHS>
+ <LHS name="SRF">calculated self resonant frequency (Hertz)</LHS>
+ <LHS name="len_out">length used for the analysis (meters)</LHS>
+ <LHS name="fill_out">fill used for the analysis</LHS>
+ <LHS name="lmax">maximum (closewound) inductance</LHS>
+
+</PARAMETERS>
+
+<DESCRIPTION>
+Function to analyze the electrical characteristics of a single layer,
+uniformly spaced, air core, solenoid inductor.  The physical
+dimensions of the coil are given as inputs and the inductance, quality
+factor, and self resonant frequency are calculated.
+</DESCRIPTION>
+
+<EXAMPLE>
+       <SCIEX><SCICMD>N=5;</SCICMD>              <COMMENT>number of turns</COMMENT></SCIEX>
+       <SCIEX><SCICMD>len=0;</SCICMD>            <COMMENT>we'll use the fill parameter instead</COMMENT></SCIEX>
+       <SCIEX><SCICMD>fill=1.2;</SCICMD>         <COMMENT>the coil is 20% longer than the minimum</COMMENT></SCIEX>
+       <SCIEX><SCICMD>AWG=22;</SCICMD>           <COMMENT>wire size</COMMENT></SCIEX>
+       <SCIEX><SCICMD>rho=1.72e-8;</SCICMD>      <COMMENT>resistivity of copper (ohm-m)</COMMENT></SCIEX>
+       <SCIEX><SCICMD>dia=0.25*0.0254;</SCICMD>  <COMMENT>0.25 inches inside diameter</COMMENT></SCIEX>
+       <SCIEX><SCICMD>f=10e6;</SCICMD>           <COMMENT>10 MHz operation</COMMENT></SCIEX>
+       <SCIEX><SCICMD>flag=1;</SCICMD>           <COMMENT>use fill to calculate length</COMMENT></SCIEX>
+       <SCIEX><SCICMD>[L,Q,SRF,len_out,fill_out,Lmax] = air_coil_calc(N,len,fill,AWG,rho,dia,f,flag);</SCICMD></SCIEX>
+       <SCIEX><SCICMD>disp(sprintf('L=%g nH',L*1e9));</SCICMD></SCIEX>
+       <SCIEX><SCICMD>disp(sprintf('Q=%g at %g MHz',Q,f/1e6));</SCICMD></SCIEX>
+       <SCIEX><SCICMD>disp(sprintf('Self Resonant Freq=%g MHz',SRF/1e6));</SCICMD></SCIEX>
+       <SCIEX><SCICMD>disp(sprintf('Length=%g inches',len_out/0.0254));</SCICMD></SCIEX>
+       <SCIEX><SCICMD>disp(sprintf('Fill=%g',fill_out));</SCICMD></SCIEX>
+       <SCIEX><SCICMD>disp(sprintf('Lmax=%g nH',Lmax*1e9));</SCICMD></SCIEX>
+       <STDEX>
+*
+* Air coil calculation using length
+*
+air_coil_calc 6 0.0127 1.2 22 1.72e-8 0.00635 100e6 0
+*
+*
+* Air coil calculation using fill
+*
+air_coil_calc 6 0.0127 1.2 22 1.72e-8 0.00635 100e6 1
+*
+       </STDEX>
+</EXAMPLE>
+
+<SEE_ALSO>
+&see_also;
+</SEE_ALSO>
+
+<AUTHOR>
+Dan McMahill
+</AUTHOR>
+
+<BUGS>
+None known
+</BUGS>
+
+</MAN>
+</TOP>
+

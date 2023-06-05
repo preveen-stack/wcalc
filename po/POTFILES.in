@@ -1,0 +1,7 @@
+# $Id: POTFILES.in,v 1.1 2002/12/17 15:29:55 dan Exp $
+#
+
+# gtk-wcalc files
+gtk-wcalc/menus.c
+gtk-wcalc/start.c
+

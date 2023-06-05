@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "man.dtd" [
+<!ENTITY see_also SYSTEM "see_also.xml">
+]>
+<TOP>
+<MAN>
+<!-- $Id: air_coil_syn.xml,v 1.6 2008/11/29 20:42:29 dan Exp $ -->
+<!--
+    Copyright (C) 2001, 2004, 2005, 2006 Dan McMahill
+    All rights reserved.
+   
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    
+-->
+
+<NAME>air_coil_syn</NAME>
+
+<SHORTDESCR>Single layer air core solenoid inductor synthesis
+</SHORTDESCR>
+
+<SYNOPSIS>
+[N_out,len_out,fill_out] = 
+  air_coil_syn(L,N,len,fill,AWG,rho,dia,freq,flag);
+</SYNOPSIS>
+
+<PARAMETERS>
+  <RHS name="L">Desired inductance (Henries)</RHS>
+  <RHS name="len">length of the coil (meters)</RHS>
+  <RHS name="fill">ratio of coil length to closewound length</RHS>
+  <RHS name="AWG">wire size (American Wire Gauge)</RHS>
+  <RHS name="rho">resistivity of wire (ohm-m)</RHS>
+  <RHS name="dia">inside diameter of coil (meters)</RHS>
+  <RHS name="freq">analysis frequency (Hertz)</RHS>
+  <RHS name="flag">indicates which parameters should be optimized
+    <ENUM>
+      <ITEM name="flag=0">the minimum number of turns is calculated
+	along with the corresponding required length/fill.  The diameter is
+	held constant.</ITEM>
+      <ITEM name="flag=1">the number of turns is fixed at the value
+        given and the required length/fill is calculated.  The
+	diameter is held constant.</ITEM>
+    </ENUM>
+  </RHS>	
+
+  <LHS name="N_out">calculated required number of turns</LHS>
+  <LHS name="len_out">calculated required length (meters)</LHS>
+  <LHS name="fill_out">calculated required fill</LHS>
+</PARAMETERS>
+
+<DESCRIPTION>
+Function to synthesize the physical parameters of a single layer,
+uniformly spaced, air core, solenoid inductor.  The physical
+dimensions of the coil are synthesized from an inductance 
+specification.
+</DESCRIPTION>
+
+<EXAMPLE>
+  <SCIEX><SCICMD>L=220e-9;</SCICMD>    <COMMENT>we want 220 nH</COMMENT></SCIEX>
+  <SCIEX><SCICMD>N=0;</SCICMD>         <COMMENT>we'll synthesize the number of turns</COMMENT></SCIEX>
+  <SCIEX><SCICMD>len=0;</SCICMD>       <COMMENT>we'll synthesize the length/fill</COMMENT></SCIEX>
+  <SCIEX><SCICMD>fill=0;</SCICMD>      <COMMENT>we'll synthesize the length/fill</COMMENT></SCIEX>
+  <SCIEX><SCICMD>AWG=22;</SCICMD>      <COMMENT>wire size</COMMENT></SCIEX>
+  <SCIEX><SCICMD>rho=1.72e-8;</SCICMD> <COMMENT>Resistivity of copper (ohm-m)</COMMENT></SCIEX>
+  <SCIEX><SCICMD>dia=0.25*0.0254;</SCICMD> <COMMENT>0.25 inches inside diameter</COMMENT></SCIEX>
+  <SCIEX><SCICMD>f=10e6;</SCICMD>      <COMMENT>10 MHz operation</COMMENT></SCIEX>
+  <SCIEX><SCICMD>flag=0;</SCICMD>      <COMMENT>synthesize for minimum number of turns</COMMENT></SCIEX>
+  <SCIEX><SCICMD>[Nout,len_out,fill_out] = air_coil_syn(L,N,len,fill,AWG,rho,dia,f,flag);</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('Number of turns = %g ',Nout));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('Length=%g inches',len_out/0.0254));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('Fill=%g',fill_out));</SCICMD></SCIEX>
+       <STDEX>
+*
+* Air coil synthesis, flag == 0 (minimize # of turns)
+*
+air_coil_syn 100e-9 6 0.0127 1.2 22 1.72e-8 0.00635 100e6 0
+
+*
+* Air coil synthesis, flag == 1 (fixed # of turns)
+*
+air_coil_syn 100e-9 6 0.0127 1.2 22 1.72e-8 0.00635 100e6 1
+*
+       </STDEX>
+</EXAMPLE>
+
+<SEE_ALSO>
+&see_also;
+</SEE_ALSO>
+
+<AUTHOR>
+Dan McMahill
+</AUTHOR>
+
+<BUGS>
+None known
+</BUGS>
+
+</MAN>
+</TOP>
+

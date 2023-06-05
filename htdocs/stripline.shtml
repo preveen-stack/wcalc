@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: stripline.shtml,v 1.7 2006/02/22 13:52:49 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004, 2006
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<title>Wcalc Stripline Model</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!--#include virtual="page_start.incl"-->
+
+<!-- The main action area -->
+    <center>
+      <font face="helvetica, arial" size="+2">
+	Wcalc Stripline Model
+      </font>
+      <br>
+      <br>
+      <img src="stripline.png"
+	   alt="Stripline Image" width="367" height="178" hspace="10" vspace="5">
+      
+    </center>
+    
+    <font face="helvetica, arial">
+    <HR>
+    <H2><A NAME="References">Selected References</A></H2>
+    <OL>
+      <LI>
+          S. B. Cohn, "Characteristic Impedance of the Shielded-Strip Transmission Line",
+          <em>IRE Transactions on Microwave Theory and Techniques</em>, Vol MTT-2,
+          No 2, July 1954, pp. 52-57.
+      </LI>
+
+      <LI>
+	H. A. Wheeler, "Formulas for the skin effect", <em>Proc. IRE</em>,
+	Vol. 30, No. 9, September 1942, pp. 412-4124
+      </LI>
+      
+      <LI>
+	Stanislaw Rosloniec,
+	<em>Algorithms For Computer-Aided Design of Linear Microwave Circuits</em>,
+	Archtech House, 1990
+      </LI>
+      
+    </OL>
+    
+  </font>
+    
+  </td>
+    
+  </tr>
+    
+<!-- The left hand column -->
+<!--#include virtual="left_column.incl"-->
+
+</table>
+<p>
+
+<!--#include virtual="main_footer.incl"-->
+
+
+</body>
+</html>

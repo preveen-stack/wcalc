@@ -1,0 +1,137 @@
+#! /usr/bin/awk -f
+#
+# $Id: html2c,v 1.5 2008/11/29 20:42:46 dan Exp $
+#
+# Copyright (c) 2001, 2002 Dan McMahill
+# All rights reserved.
+#
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+# 
+
+
+#
+# This script operates on a html file to produce a C program which
+# will print the html file.  In addition one extra markup is introduced.
+#
+#  <@fmt@var@>  will cause a line like:
+#    fprintf(outstr,"%fmt",var);
+#
+# In the generated C code.
+#
+# Typical usage would be:
+#
+#    html2c out=outstr foo.html > foo.c
+#
+# The stream 'outstr' will be used for all output.  Ie, the generated
+# C file will have calls like fprintf(outstr,"");
+#
+# Then in, for example, bar.c you could do something like:
+#
+#  print_html()
+#  {
+#    /* declare variables and do whatever else you need */
+#    /* .... */
+#
+#    /* include the print out of our html */
+#    #include "foo.c"
+#
+#  }
+#
+#
+# The idea is that its a pain in the ass to write HTML in C.  Its much
+# easier to work on an HTML file that you can quickly edit and preview.
+# Then when you're done, you can quickly generate some C code that you
+# might use as part of a CGI program
+#
+
+BEGIN{
+  printf("\n");
+  printf("/* ********* Automatically Generated.  Do not edit! ******** */\n");
+  printf("/* *********         Created with html2c            ******** */\n\n");
+}
+
+{
+  if ( out == "" ){
+# provide a default for the output stream
+	out = "stdout";
+  }
+# make a copy of the input line
+  exact=$0;
+
+# process the <SOURCEFORGE> tags
+  if( sourceforge == 1 ) {
+	gsub(/<SOURCEFORGE>/, "");
+	gsub(/<\/SOURCEFORGE>/, "");
+  } else {
+	gsub(/<SOURCEFORGE>/, "<!--");
+	gsub(/<\/SOURCEFORGE>/, "-->");
+  }
+
+# escape all backslashes
+  gsub(/\\/,"\\\\");
+ 
+# escape all double quotes
+  gsub(/\"/,"\\\"");
+
+# escape all percents
+  gsub(/%/,"%%");
+
+# replace all <@fmt@var@> markup with %fmt
+  line = gensub(/<@([^@])@[^@]*@>/,"%\\1","g");
+
+# see if the line had a <@fmt@var@> markup and if so, we need to
+# make sure to print out the variables
+  numvars = 0;
+#  if ($0 ~ /<@([^@]*)@[^@]*@>/){
+  if (exact ~ /<@([^@]*)@[^@]*@>/){
+#    templine = $0;
+    templine = exact;
+    done = 0;
+    while (!done){
+      where = match(templine, /<@([^@]*)@[^@]*@>/);
+      if (where == 0){
+	done = 1;
+      }
+      else{
+# pick out the <@fmt@var@> markup by its self
+	tmpstr = substr(templine,where,RLENGTH);
+
+# keep the rest of the line
+	if (length(templine) >= where+RLENGTH)
+	  templine = substr(templine,where+RLENGTH);
+	else
+	  templine = "";
+
+# extract the variable name	
+	varname[numvars] = gensub(/<@[^@]*@([^@]*)@>/,"\\1","g",tmpstr);
+	numvars = numvars + 1;
+      }
+    }
+  }
+
+  printf("fprintf(%s,\"%s\\n\"",out,line);
+  for (i = 0; i<numvars; i=i+1){
+    printf(",%s",varname[i]);
+  }
+  printf(");\n");
+
+}
+
+END{
+  printf("\n");
+  printf("/* *********        End of Generated Code           ******** */\n\n");
+}
+
+

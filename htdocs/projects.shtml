@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: projects.shtml,v 1.10 2009/02/28 03:32:05 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004, 2005
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<title>Current Wcalc Projects</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!--#include virtual="page_start.incl"-->
+
+<!-- The main action area -->
+    <center>
+    <font face="helvetica, arial" size="+2">
+      Current Wcalc Projects
+    </font>
+    <br>
+    <br>
+    </center>
+
+    <H2>In Progress</H2>
+    <UL>
+    <LI>Bug hunting.  This is always a high priority.</LI>
+    <LI>Model verification.  This is also high priority.  When possible
+    I try to collect data points from other tools for comparison.</LI>
+    <LI>Remove the use of some functions like the menu factory which are slated
+    for removal in future gtk releases.
+    </LI>
+    </UL>
+
+    <H2>Future</H2>
+    <UL>
+    <LI>i18n.  Some of the framework is in place as well as the start of a
+    Spanish language translation.  I have not worked on CGI i18n.  In fact
+    I'm not sure of the best way to proceed there.</LI>
+    <LI>I would like to figure out how to use a field solver to provide accuracy
+    validation.  I have tried to use <a href="http://mmtl.sourceforge.net/">MMTL</a>
+    for comparison but haven't fully learned to use that tool yet.  Ideally I'd like
+    to have some automated scripts to plot things like impedance and velocity as
+    a function of some input parameter with both wcalc and MMTL to
+    show how they compare.  Another tool that I would like to
+    investigate for providing an electromagnetic solution for
+    comparison is <a href="http://lc.cray.com">LC</a>.
+    </LI>
+    <LI>More models.
+        <UL>
+	<LI>various microstrip discontinuities</LI>
+	<LI>spiral inductors.  The ability to interface to fasthenry
+	    is being considered.</LI>
+	</UL></LI>
+    </UL>
+
+    <font face="helvetica, arial">
+    </font>
+
+  </td>
+
+</tr>
+
+<!-- The left hand column -->
+<!--#include virtual="left_column.incl"-->
+
+</table>
+<p>
+
+<!--#include virtual="main_footer.incl"-->
+
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+parallel_rl_p2s()               Wcalc Commands               parallel_rl_p2s()
+
+ppaarraalllleell__rrll__pp22ss  -  Convert Parallel RL Network into Equivalent Series RL Net-
+work
+
+SSYYNNOOPPSSIISS
+       [] = parallel_rl_p2s(Lp, Rp, Qp, freq, flag, Ls, Rs, Qs, Lp, Rp, Qp)
+
+IINNPPUUTT PPAARRAAMMEETTEERRSS
+       Lp        : Parallel inductance (Farads)
+
+       Rp        : Parallel resistance (Ohms)
+
+       Qp        : Parallel quality factor
+
+       freq      : Analysis frequency (Hertz)
+
+       flag      : indicates if Qs or Rs should be used for the loss input
+
+                 flag=0    : Qs will be calculated from Rs.
+
+                 flag=1    : Rs will be calculated from Qs.
+
+       Ls        : Series inductance (Farads)
+
+       Rs        : Series resistance (Ohms)
+
+       Qs        : Series quality factor
+
+       Lp        : Parallel inductance (Farads)
+
+       Rp        : Parallel resistance (Ohms)
+
+       Qp        : Parallel quality factor
+
+OOUUTTPPUUTT VVAALLUUEESS
+DDEESSCCRRIIPPTTIIOONN
+       Function to calculate an equivalent series RL  network  from  an  input
+       parallel RL network.
+
+EEXXAAMMPPLLEE
+        // 10 nH
+              Lp=10e-9;
+
+        // 5 kOhms
+              Rp=5e3;
+
+        // This value will be replaced
+              Qp=100;
+
+        // 100 MHz operation
+              f=100e6;
+
+        // Use Rp (and calculate Qp)
+              flag=0;
+              [Ls, Rs, Qs, Lp, Rp, Qp] = parallel_rl_p2s(Lp, Rp,
+                Qp, f, flag);
+              disp(sprintf('Equivalent series L = %g nH', Ls/1e-9));
+              disp(sprintf('Equivalent series R = %g Ohm', Rs));
+              disp(sprintf('Quality factor      =%g',Qs));
+
+SSEEEE AALLSSOO
+       stdio-wcalc(1),     air_coil_calc(),    air_coil_syn(),    coax_calc(),
+       bars_calc(),   coax_syn(),   coplanar_calc(),   coplanar_syn(),    cou-
+       pled_microstrip_calc(),          coupled_microstrip_syn(),         cou-
+       pled_stripline_calc(),  coupled_stripline_syn(),  ic_microstrip_calc(),
+       ic_microstrip_syn(),    microstrip_calc(),   microstrip_syn(),   paral-
+       lel_rc_p2s(), parallel_rc_s2p(), parallel_rl_p2s(),  parallel_rl_s2p(),
+       stripline_calc(), stripline_syn()
+
+AAUUTTHHOORR
+       Dan McMahill
+
+BBUUGGSS
+       None known
+
+Wcalc                                                        parallel_rl_p2s()

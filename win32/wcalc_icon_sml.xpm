@@ -1,0 +1,25 @@
+/* XPM */
+static char * wcalc_icon_sml[] = {
+"16 16 5 1",
+"` c white",
+"a c cyan",
+"b c DarkSlateGray",
+"c c red",
+"d c blue",
+"aaaaaaaaaaaaaaa`",
+"aaaaaaaaaaaaaaa`",
+"aaaaaaaaaaaaaaa`",
+"aaaaddaaaaaddaa`",
+"aaadaadaaadaada`",
+"aadaaadaaadaaaa`",
+"aaadddadadaddda`",
+"aaadbbbbbdbbada`",
+"aaadbbbbbbbbada`",
+"ccccccccccccccc`",
+"ccccccccccccccc`",
+"bbbbbbbbbbbbbbb`",
+"bbbbbbbbbbbbbbb`",
+"bbbbbbbbbbbbbbb`",
+"bbbbbbbbbbbbbbb`",
+"````````````````"
+};

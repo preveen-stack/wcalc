@@ -1,0 +1,15 @@
+# $Id: wcalc.pc.in,v 1.3 2005/10/29 13:27:27 dan Exp $
+#
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+pkgincludedir=@includedir@/@PACKAGE@-@VERSION@
+
+Name: libwcalc
+Description: Core library for Wcalc
+Requires: 
+Version: @VERSION@
+Libs: -L${libdir} -lwcalc -lm
+Cflags: -I${pkgincludedir}

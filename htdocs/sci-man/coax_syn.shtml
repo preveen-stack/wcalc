@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: man_start.incl,v 1.5 2004/07/28 11:51:14 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+<title>Sci-Wcalc: coax_syn</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!--#include virtual="page_start.incl"-->
+
+<!-- The main action area -->
+    <center>
+    <font face="helvetica, arial" size="+2">
+      Sci-Wcalc: coax_syn
+    </font>
+    <br>
+    <br>
+    </center>
+
+    <font face="courier, helvetica, arial" size="-1">
+    
+coax_syn - Coaxial transmission line synthesis
+<h2>SYNOPSIS</h2>
+[a_out, b_out, c_out, er_out, len] = 
+coax_syn(a, b, c, t, rho_a, rho_b, er, tand, len, f, flag)
+<h2>PARAMETERS</h2><h3>INPUT PARAMETERS</h3><ul>
+<li>a
+: radius of inner conductor (meters)</li>
+<li>b
+: inner radius of outer conductor (meters)</li>
+<li>c
+: offset of the inner conductor from the center (meters)</li>
+<li>t
+: thickness of shield (meters)</li>
+<li>rho_a
+: resistivity of inner conductor (ohms/meter)</li>
+<li>rho_b
+: resistivity of outer conductor (ohms/meter)</li>
+<li>er
+: relative permitivitty of dielectric</li>
+<li>tand
+: loss tangent of dielectric</li>
+<li>len
+: physical length of line (meters)</li>
+<li>f
+: operating frequency (Hertz)</li>
+<li>flag
+: indicates which parameters should be optimized
+    <ul>
+<li>flag=0 : synthesize a</li>
+<li>flag=1 : synthesize b</li>
+<li>flag=2 : synthesize c</li>
+<li>flag=3 : synthesize er</li>
+</ul>
+</li>
+</ul><h3>OUTPUT VALUES</h3><ul>
+<li>a_out
+: synthesized radius of inner conductor (meters)</li>
+<li>b_out
+: synthesized inner radius of outer conductor (meters)</li>
+<li>c_out
+: synthesized offset of the inner conductor from the center (meters)</li>
+<li>er_out
+: synthesized relative permitivitty of dielectric</li>
+<li>len
+: synthesized physical length of line (meters)</li>
+</ul><h2>DESCRIPTION</h2><p>
+Function to synthesize the physical parameters of a
+coaxial transmission line to achieve a given set of
+electrical characteristics.
+</p><h2>EXAMPLE</h2><pre> // mils to meters conversion factor
+sf=25.4e-6;
+ // desired characteristic impedance
+z0=75.0;
+ // desired electrical length (degrees)
+elen=90.0;
+ // radius of inner conductor
+a=10.0*sf;
+ // inner radius of outer conductor
+b=100.0*sf;
+ // offset of inner conductor
+c=0*sf;
+ // thickness of outer conductor
+t=5.0*sf;
+ // resistivity of inner conductor
+rho_a=3.5e-8;
+ // resistivity of outer conductor
+rho_b=rho_a;
+ // relative permitivitty of dielectric
+er=9.5;
+ // dielectric loss tangent
+tand=0.01;
+ // 100 MHz operation
+f=100e6;
+ // synthesize b
+flag=1;
+[a,b,c,er,len] = ...
+   coax_syn(z0,elen,a,b,c,t,rho_a,rho_b,er,tand,f,flag);
+disp(sprintf('z0   = %g Ohms',z0));
+disp(sprintf('elen = %g degrees',elen));
+disp(sprintf('a    = %g m',a));
+disp(sprintf('b    = %g m',b));
+disp(sprintf('c    = %g m',c));
+disp(sprintf('er   = %g ',er));
+disp(sprintf('len  = %g m',len));
+</pre><h2>SEE ALSO</h2><p><a href="air_coil_calc.html">air_coil_calc</a><br>
+
+<a href="air_coil_syn.html">air_coil_syn</a><br>
+
+<a href="coax_calc.html">coax_calc</a><br>
+
+<a href="coax_syn.html">coax_syn</a><br>
+
+<a href="coplanar_calc.html">coplanar_calc</a><br>
+
+<a href="coplanar_syn.html">coplanar_syn</a><br>
+
+<a href="coupled_microstrip_calc.html">coupled_microstrip_calc</a><br>
+
+<a href="coupled_microstrip_syn.html">coupled_microstrip_syn</a><br>
+
+<a href="coupled_stripline_calc.html">coupled_stripline_calc</a><br>
+
+<a href="coupled_stripline_syn.html">coupled_stripline_syn</a><br>
+
+<a href="ic_microstrip_calc.html">ic_microstrip_calc</a><br>
+
+<a href="ic_microstrip_syn.html">ic_microstrip_syn</a><br>
+
+<a href="microstrip_calc.html">microstrip_calc</a><br>
+
+<a href="microstrip_syn.html">microstrip_syn</a><br>
+
+<a href="stripline_calc.html">stripline_calc</a><br>
+
+<a href="stripline_syn.html">stripline_syn</a><br>
+
+</p><h2>AUTHOR</h2><p>
+Dan McMahill
+</p><h2>BUGS</h2><p>
+None known
+</p><p>
+Please report any bugs on the <a href="http://wcalc.sf.net">
+Wcalc Sourceforge Project Page</a></p>
+<!-- $Id: man_end.incl,v 1.3 2001/10/30 04:08:24 dan Exp $ -->
+    
+    <P>Return to the <a href="../sci-wcalc.html">Sci-Wcalc</a> page.</P>
+    </font>
+
+  </td>
+
+</tr>
+
+<!-- The left hand column -->
+<!--#include virtual="left_column.incl"-->
+
+</table>
+<p>
+
+<!--#include virtual="main_footer.incl"-->
+
+
+</body>
+</html>

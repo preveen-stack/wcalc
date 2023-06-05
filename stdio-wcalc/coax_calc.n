@@ -1,0 +1,98 @@
+
+.\" Copyright (c), 2005 Dan McMahill
+.\" Do not edit this directly.  Edit the XML source file instead
+.\"
+
+.TH coax_calc "n" "" "Wcalc" "Wcalc Commands"
+.B coax_calc
+- Coaxial transmission line analysis
+
+.SH SYNOPSIS
+coax_calc a b c t rho_a rho_b er tand len f 
+
+.SH INPUT PARAMETERS
+
+.TP 10
+a
+: radius of inner conductor (meters)
+.TP 10
+b
+: inner radius of outer conductor (meters)
+.TP 10
+c
+: offset of the inner conductor from the center (meters)
+.TP 10
+t
+: thickness of shield (meters)
+.TP 10
+rho_a
+: resistivity of inner conductor (ohms/meter)
+.TP 10
+rho_b
+: resistivity of outer conductor (ohms/meter)
+.TP 10
+er
+: relative permitivitty of dielectric
+.TP 10
+tand
+: loss tangent of dielectric
+.TP 10
+len
+: physical length of line (meters)
+.TP 10
+f
+: analysis frequency (Hertz)
+
+.SH OUTPUT VALUES
+
+.TP 10
+L
+: calculated inductance per length (Henries/meter)
+.TP 10
+R
+: calculated resistance per length (Ohms/meter)
+.TP 10
+C
+: calculated capacitance per length (Farads/meter)
+.TP 10
+G
+: calculated conductance per length (Siemens/meter)
+.TP 10
+lc
+: conductor loss (dB/meter)
+.TP 10
+ld
+: dielectric loss (dB/meter)
+.TP 10
+fc
+: TE10 cutoff frequency (Hz)
+.TP 10
+em
+: Max Electric Field (Volts/meter)
+.SH DESCRIPTION
+
+Function to analyze the electrical characteristics of a
+coaxial transmission line.
+The physical
+dimensions of the line are given as inputs and the 
+characteristic impedance and incremental circuit model
+elements are calculated.
+
+.SH EXAMPLE
+.nf
+
+* 50.000 ohms
+coax_calc 1.520e-3 3.5e-3 0.0e-4 1.0e-3 3.5e-8 3.5e-8 1.00022 0.0 1.0 1.0e9
+*
+  
+.fi
+.SH SEE ALSO
+stdio-wcalc(1),
+air_coil_calc(n), air_coil_syn(n), coax_calc(n), coax_syn(n), coplanar_calc(n), coplanar_syn(n), coupled_microstrip_calc(n), coupled_microstrip_syn(n), coupled_stripline_calc(n), coupled_stripline_syn(n), ic_microstrip_calc(n), ic_microstrip_syn(n), microstrip_calc(n), microstrip_syn(n), stripline_calc(n), stripline_syn(n)
+.SH AUTHOR
+
+Dan McMahill
+
+.SH BUGS
+
+None known

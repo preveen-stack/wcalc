@@ -1,0 +1,86 @@
+<TR>
+<TD>Material</TD>
+<TD></TD>
+<TD>Relative Permitivitty</TD>
+<TD>Loss Tangent</TD>
+</TR>
+<TR>
+</TR>
+<TR>
+<TD>Alumina</TD>
+<TD>99.5% Pure</TD>
+<TD>9.8</TD>
+<TD>0.0001</TD>
+</TR>
+<TR>
+<TD>FR4</TD>
+<TD>Fiberglass</TD>
+<TD>4.2-4.9</TD>
+<TD>0.01-0.016</TD>
+</TR>
+<TR>
+<TD>GaAs</TD>
+<TD></TD>
+<TD>12.9</TD>
+<TD>0.002</TD>
+</TR>
+<TR>
+<TD>GML-1000</TD>
+<TD>0.030 inch laminate</TD>
+<TD>3.2 +/- 0.05</TD>
+<TD>.002-.005</TD>
+</TR>
+<TR>
+<TD>GML-1000</TD>
+<TD>0.060 inch laminate</TD>
+<TD>3.05 +/- 0.05</TD>
+<TD>.002-.005</TD>
+</TR>
+<TR>
+<TD>PTFE</TD>
+<TD></TD>
+<TD>2.1</TD>
+<TD>0.0003</TD>
+</TR>
+<TR>
+<TD>Quartz</TD>
+<TD></TD>
+<TD>3.78</TD>
+<TD>0.0001</TD>
+</TR>
+<TR>
+<TD>RO4350B</TD>
+<TD></TD>
+<TD>3.48 +/- 0.05</TD>
+<TD>.0031-.0037</TD>
+</TR>
+<TR>
+<TD>RT/duroid 5870</TD>
+<TD></TD>
+<TD>2.33 +/- 0.02</TD>
+<TD>0.0005 - 0.0012</TD>
+</TR>
+<TR>
+<TD>RT/duroid 5880</TD>
+<TD></TD>
+<TD>2.20 +/- 0.02</TD>
+<TD>0.0004 - 0.0009</TD>
+</TR>
+<TR>
+<TD>Silicon</TD>
+<TD>Si</TD>
+<TD>11.8</TD>
+<TD></TD>
+</TR>
+<TR>
+<TD>Silicon Dioxide</TD>
+<TD>SiO2</TD>
+<TD>4.5</TD>
+<TD></TD>
+</TR>
+<TR>
+<TD>Silicon Nitride</TD>
+<TD>Si3N4</TD>
+<TD>7.5</TD>
+<TD></TD>
+</TR>

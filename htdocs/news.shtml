@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: news.shtml,v 1.9 2009/02/28 03:19:42 dan Exp $ -->
+<!-- Copyright (c) 2004, 2006
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@users.sourceforge.net">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<title>Wcalc News</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+coupled stripline,
+coupled stripline analysis,
+coupled stripline synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!--#include virtual="page_start.incl"-->
+
+<!-- The main action area -->
+    <center>
+    <font face="helvetica, arial" size="+2">
+      Wcalc News
+    </font>
+    <br>
+    <br>
+    </center>
+
+    <HR>
+    <H2><A NAME="wcalc-1.1">wcalc-1.1 released</A></H2>
+    <P>
+    This release contains the following improvements:
+    <UL>
+    <LI>Added series/parallel RC network calculator.</LI>
+    <LI>Added series/parallel RL network calculator.</LI>
+    <LI>Added coplanar waveguide models.</LI>
+    <LI>Added coupled stripline model.</LI>
+    <LI>Added self and mutual inductance of parallel rectangular bars.</LI>
+    <LI>Added parallel/series RC equivalent network calculation.</LI>
+    <LI>Corrected some bugs in the Q calculation for air core
+    inductors.</LI>
+    <LI>Corrected the calculation of incremental conductance for the
+    microstrip model.</LI>
+    <LI>Corrected a bug in the calculation of conductor losses in the
+    microstrip model.</LI>
+    <LI>Added/enabled code for calculating conductor losses in the
+    coupled microstrip model.</LI>
+    <LI>Enabled printing under windows.</LI>
+    <LI>Switched to GPL licensing.</LI>
+    </UL>
+    </P>
+	
+
+    <HR>
+    <H2><A NAME="wcalc-1.0">wcalc-1.0 released</A></H2>
+    <P>
+    This release contains a few minor bug fixes and improvements over
+    version 0.9.  In particular, the GTK frontend now uses a log window
+    for warnings instead of a single dialog box per warning.  The CGI
+    frontend for coupled microstrip now does not generated lots of warning
+    messages.  Finally, win32 support is added and a build script is added
+    to allow native windows installers to be generated.
+    </P>
+	
+    <HR>
+    <H2><A NAME="wcalc-0.9">wcalc-0.9 released</A></H2>
+    <P>
+    After 8 years in development and use among a fairly small group of people,
+    I am pleased to announce that the first public release of wcalc is finally
+    available.  While wcalc is believed to be stable at this time, it has not
+    received much field testing.  Therefore I decided on calling this version
+    0.9.  My intention is to collect feedback from users over the next few months
+    and then make a 1.0 release after wcalc has seen some more widespread use.
+    </P>
+
+    <font face="helvetica, arial">
+    </font>
+
+  </td>
+
+</tr>
+
+<!-- The left hand column -->
+<!--#include virtual="left_column.incl"-->
+
+</table>
+<p>
+
+<!--#include virtual="main_footer.incl"-->
+
+
+</body>
+</html>

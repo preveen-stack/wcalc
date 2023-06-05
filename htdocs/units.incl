@@ -1,0 +1,32 @@
+<TR>
+<TD>To Convert From</TD>
+<TD>To</TD>
+<TD>Multiply by</TD>
+<TD>or Divide by</TD>
+</TR>
+<TR>
+</TR>
+<TR>
+<TD>mil</TD>
+<TD>inches</TD>
+<TD>0.001</TD>
+<TD>1000</TD>
+</TR>
+<TR>
+<TD>mil</TD>
+<TD>um</TD>
+<TD>25.4</TD>
+<TD>0.039370079</TD>
+</TR>
+<TR>
+<TD>mil</TD>
+<TD>mm</TD>
+<TD>0.0254</TD>
+<TD>39.370079</TD>
+</TR>
+<TR>
+<TD>mil</TD>
+<TD>cm</TD>
+<TD>0.00254</TD>
+<TD>393.70079</TD>
+</TR>

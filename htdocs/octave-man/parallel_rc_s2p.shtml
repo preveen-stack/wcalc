@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: man_start.incl,v 1.2 2004/07/28 11:51:14 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+<title>Octave-Wcalc: parallel_rc_s2p</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!--#include virtual="page_start.incl"-->
+
+<!-- The main action area -->
+    <center>
+    <font face="helvetica, arial" size="+2">
+      Octave-Wcalc: parallel_rc_s2p
+    </font>
+    <br>
+    <br>
+    </center>
+
+    <font face="courier, helvetica, arial" size="-1">
+    
+parallel_rc_s2p - Convert Series RC Network into Equivalent Parallel RC Network
+<h2>SYNOPSIS</h2>
+[] = 
+parallel_rc_s2p(Cs, Rs, Qs, freq, flag, Cs, Rs, Qs, Cp, Rp, Qp)
+<h2>PARAMETERS</h2><h3>INPUT PARAMETERS</h3><ul>
+<li>Cs
+: Series capacitance (Farads)</li>
+<li>Rs
+: Series resistance (Ohms)</li>
+<li>Qs
+: Series quality factor</li>
+<li>freq
+: Analysis frequency (Hertz)</li>
+<li>flag
+: indicates if Qs or Rs should be used for the loss input
+    <ul>
+<li>flag=0 : Qs will be calculated from Rs.</li>
+<li>flag=1 : Rs will be calculated from Qs.</li>
+</ul>
+</li>
+<li>Cs
+: Series capacitance (Farads)</li>
+<li>Rs
+: Series resistance (Ohms)</li>
+<li>Qs
+: Series quality factor</li>
+<li>Cp
+: Parallel capacitance (Farads)</li>
+<li>Rp
+: Parallel resistance (Ohms)</li>
+<li>Qp
+: Parallel quality factor</li>
+</ul><h3>OUTPUT VALUES</h3><ul></ul><h2>DESCRIPTION</h2><p>
+Function to calculate an equivalent parallel RC network from an input
+series RC network.
+</p><h2>EXAMPLE</h2><pre> % 10 pF
+Cs=10e-12;
+ % 0.5 Ohms
+Rs=0.5;
+ % This value will be replaced
+Qs=100;
+ % 100 MHz operation
+f=100e6;
+ % Use Rs (and calculate Qs)
+flag=0;
+[Cs, Rs, Qs, Cp, Rp, Qp] = parallel_rc_s2p(Cs, Rs,
+  Qs, f, flag);
+disp(sprintf('Equivalent parallel C = %g pF', Cp/1e-12));
+disp(sprintf('Equivalent parallel R = %g kOhm', Rp/1e3));
+disp(sprintf('Quality factor         =%g',Qp));
+</pre><h2>SEE ALSO</h2><p><a href="air_coil_calc.html">air_coil_calc</a><br>
+
+<a href="air_coil_syn.html">air_coil_syn</a><br>
+
+<a href="coax_calc.html">coax_calc</a><br>
+
+<a href="bars_calc.html">bars_calc</a><br>
+
+<a href="coax_syn.html">coax_syn</a><br>
+
+<a href="coplanar_calc.html">coplanar_calc</a><br>
+
+<a href="coplanar_syn.html">coplanar_syn</a><br>
+
+<a href="coupled_microstrip_calc.html">coupled_microstrip_calc</a><br>
+
+<a href="coupled_microstrip_syn.html">coupled_microstrip_syn</a><br>
+
+<a href="coupled_stripline_calc.html">coupled_stripline_calc</a><br>
+
+<a href="coupled_stripline_syn.html">coupled_stripline_syn</a><br>
+
+<a href="ic_microstrip_calc.html">ic_microstrip_calc</a><br>
+
+<a href="ic_microstrip_syn.html">ic_microstrip_syn</a><br>
+
+<a href="microstrip_calc.html">microstrip_calc</a><br>
+
+<a href="microstrip_syn.html">microstrip_syn</a><br>
+
+<a href="parallel_rc_p2s.html">parallel_rc_p2s</a><br>
+
+<a href="parallel_rc_s2p.html">parallel_rc_s2p</a><br>
+
+<a href="stripline_calc.html">stripline_calc</a><br>
+
+<a href="stripline_syn.html">stripline_syn</a><br>
+
+</p><h2>AUTHOR</h2><p>
+Dan McMahill
+</p><h2>BUGS</h2><p>
+None known
+</p><p>
+Please report any bugs on the <a href="http://wcalc.sf.net">
+Wcalc Sourceforge Project Page</a></p>
+<!-- $Id: man_end.incl,v 1.1 2002/06/18 01:24:49 dan Exp $ -->
+
+    <P>Return to the <a href="../octave-wcalc.html">Octave-Wcalc</a> page.</P>
+    </font>
+
+  </td>
+
+</tr>
+
+<!-- The left hand column -->
+<!--#include virtual="left_column.incl"-->
+
+</table>
+<p>
+
+<!--#include virtual="main_footer.incl"-->
+
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: man_start.incl,v 1.4 2004/07/28 11:51:14 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+<title>Mex-Wcalc: bars_calc</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!-- $Id: page_start.incl,v 1.3 2002/05/10 22:49:37 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002 Dan McMahill, All rights reserved. -->
+
+<body bgcolor="#ffffff" text="#000000" link="#3535c5" vlink="#700080">
+
+<table border="0" cellspacing="0" cellpadding="5"><tr>
+  <td></td>
+  <td rowspan=2 valign="top" width="100%">
+
+
+
+<!-- The main action area -->
+    <center>
+    <font face="helvetica, arial" size="+2">
+      Mex-Wcalc: bars_calc
+    </font>
+    <br>
+    <br>
+    </center>
+
+    <font face="courier, helvetica, arial" size="-1">
+    
+bars_calc - Self and mutual inductance of a pair of parallel rectangular bars
+<h2>SYNOPSIS</h2>
+[L1, L2, M, k] = 
+bars_calc(a, b, l1, d, c, l2, E, P, l3, freq)
+<h2>PARAMETERS</h2><h3>INPUT PARAMETERS</h3><ul>
+<li>a
+: Width of bar 1 (meters)</li>
+<li>b
+: Thickness of bar 1 (meters)</li>
+<li>l1
+: Length of bar 1 (meters)</li>
+<li>d
+: Width of bar 2 (meters)</li>
+<li>c
+: Thickness of bar 2 (meters)</li>
+<li>l2
+: Length of bar 2 (meters)</li>
+<li>E
+: Position of bar 2 in the width direction (meters)</li>
+<li>P
+: Position of bar 2 in the thickness direction (meters)</li>
+<li>l3
+: Position of bar 2 in the length direction (meters)</li>
+<li>freq
+: analysis frequency (Hertz)</li>
+</ul><h3>OUTPUT VALUES</h3><ul>
+<li>L1
+: Bar 1 self inductance (Henries)</li>
+<li>L2
+: Bar 2 self inductance (Henries)</li>
+<li>M
+: Mutual inductance (Henries)</li>
+<li>k
+: Coupling coefficient</li>
+</ul><h2>DESCRIPTION</h2><p>
+Function to analyze the self and mutual inductances of two parallel
+rectanglar bars.
+</p><h2>EXAMPLE</h2><pre> % Width of bar #1
+a=10e-6;
+ % Thickness of bar #1
+b=1e-6;
+ % Length of bar #1
+l1=1e-3;
+ % Width of bar #2
+d=10e-6;
+ % Thickness of bar #2
+c=1e-6;
+ % Length of bar #2
+l2=1e-3;
+ % Position of bar #2 in the width direction
+E=12e-6;
+ % Position of bar #2 in the thickness direction
+P=0;
+ % Position of bar #2 in the length direction
+l3=0;
+ % 1 GHz operation
+f=1e9;
+[L1, L2, M, k] = bars_calc(a,b,l1,d,c,l2,E,P,l3,f);
+disp(sprintf('L1=%g nH',L1*1e9));
+disp(sprintf('L2=%g nH',L2*1e9));
+disp(sprintf('M =%g nH',M*1e9));
+disp(sprintf('k =%g',k));
+</pre><h2>SEE ALSO</h2><p><a href="air_coil_calc.html">air_coil_calc</a><br>
+
+<a href="air_coil_syn.html">air_coil_syn</a><br>
+
+<a href="coax_calc.html">coax_calc</a><br>
+
+<a href="bars_calc.html">bars_calc</a><br>
+
+<a href="coax_syn.html">coax_syn</a><br>
+
+<a href="coplanar_calc.html">coplanar_calc</a><br>
+
+<a href="coplanar_syn.html">coplanar_syn</a><br>
+
+<a href="coupled_microstrip_calc.html">coupled_microstrip_calc</a><br>
+
+<a href="coupled_microstrip_syn.html">coupled_microstrip_syn</a><br>
+
+<a href="coupled_stripline_calc.html">coupled_stripline_calc</a><br>
+
+<a href="coupled_stripline_syn.html">coupled_stripline_syn</a><br>
+
+<a href="ic_microstrip_calc.html">ic_microstrip_calc</a><br>
+
+<a href="ic_microstrip_syn.html">ic_microstrip_syn</a><br>
+
+<a href="microstrip_calc.html">microstrip_calc</a><br>
+
+<a href="microstrip_syn.html">microstrip_syn</a><br>
+
+<a href="stripline_calc.html">stripline_calc</a><br>
+
+<a href="stripline_syn.html">stripline_syn</a><br>
+
+</p><h2>AUTHOR</h2><p>
+Dan McMahill
+</p><h2>BUGS</h2><p>
+None known
+</p><p>
+Please report any bugs on the <a href="http://wcalc.sf.net">
+Wcalc Sourceforge Project Page</a></p>
+<!-- $Id: man_end.incl,v 1.2 2001/10/30 04:08:23 dan Exp $ -->
+
+    <P>Return to the <a href="../mex-wcalc.html">MEX-Wcalc</a> page.</P>
+    </font>
+
+  </td>
+
+</tr>
+
+<!-- The left hand column -->
+<!-- $Id: left_column.incl,v 1.22 2009/02/28 03:33:02 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2005, 2006 Dan McMahill, All rights reserved. -->
+<tr>
+  <td valign="top">
+
+  <table width="100%" cellspacing=0 cellpadding=0 border=0>
+  <tr>
+  <td>
+  <img src="../logo.png" width="197" height="161"
+   alt="Wcalc Logo">
+  </td></tr>
+  </table>
+
+  <br>
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Information</b>
+    </font>
+    </td></tr>
+   <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../about.html">About Wcalc</a><br>
+	&nbsp;<a href="../bugs.html">Reporting bugs</a><br>
+	&nbsp;<a href="../projects.html">Current projects</a><br>
+	&nbsp;<a href="../obtaining.html">Obtaining Wcalc</a><br>
+	&nbsp;<a href="../tech.html">Technical Notes</a><br>
+	&nbsp;<a href="../faq.html">Wcalc F.A.Q.</a><br>
+	&nbsp;<a href="../index.html">Wcalc Home</a><br>
+	&nbsp;<a href="../http://sourceforge.net/projects/wcalc">Wcalc Sourceforge Project</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Models</b>
+    </font>
+    </td></tr>
+    <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../air_coil.html">Air Core Solenoid Inductor</a><br>
+	&nbsp;<a href="../bars.html">Parallel Rectangular Bars Inductance</a><br>
+	&nbsp;<a href="../coax.html">Coaxial Transmission Line</a><br>
+	&nbsp;<a href="../coplanar.html">Coplanar Waveguide</a><br>
+	&nbsp;<a href="../coupled_microstrip.html">Coupled Microstrip</a><br>
+	&nbsp;<a href="../coupled_stripline.html">Coupled Stripline</a><br>
+	&nbsp;<a href="../ic_microstrip.html">Integrated Circuit Microstrip</a><br>
+	&nbsp;<a href="../microstrip.html">Microstrip</a><br>
+	&nbsp;<a href="../parallel_rc.html">Series/Parallel RC Network</a><br>
+	&nbsp;<a href="../parallel_rl.html">Series/Parallel RL Network</a><br>
+	&nbsp;<a href="../stripline.html">Stripline</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Frontends</b>
+    </font>
+    </td></tr>
+    <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../cgi-wcalc.html">CGI-Wcalc (Web Interface)</a><br>
+	&nbsp;<a href="../gtk-wcalc.html">GTK-Wcalc (GUI Interface)</a><br>
+	&nbsp;<a href="../mex-wcalc.html">MEX-Wcalc (Matlab Interface)</a><br>
+	&nbsp;<a href="../octave-wcalc.html">Octave-Wcalc (Octave Interface)</a><br>
+	&nbsp;<a href="../sci-wcalc.html">SCI-Wcalc (Scilab Interface)</a><br>
+	&nbsp;<a href="../stdio-wcalc.html">STDIO-Wcalc (Simple stdio Interface)</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Misc. Info.</b>
+    </font>
+    </td></tr>
+    <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../permeability.html">Permeabilities</a><br>
+	&nbsp;<a href="../permitivity.html">Permitivities</a><br>
+	&nbsp;<a href="../resistivity.html">Resistivities</a><br>
+	&nbsp;<a href="../units.html">Unit Conversion Factors</a><br>
+	&nbsp;<a href="../AWG.html">Wire Sizes</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  </td>
+</tr>
+
+
+
+</table>
+<p>
+
+<!-- $Id: main_footer.incl,v 1.7 2006/01/03 00:10:15 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004, 2005, 2006 Dan McMahill, All rights reserved. -->
+
+<center>
+<table border=0 cellpadding=0 cellspacing=0><tr>
+  <td width=25>&nbsp;</td>
+
+
+
+
+
+
+
+
+
+  <td width=25>&nbsp;</td>
+
+  <td valign="center" align="center">
+  <address>
+    <font color="#000000" size="-1">
+      Copyright &copy; 2001, 2002, 2004, 2005, 2006
+      Dan McMahill  ALL RIGHTS RESERVED.
+    </font>
+  </address>
+  </td>
+
+  <td width=25>&nbsp;</td>
+
+
+
+
+
+
+
+
+
+</tr></table>
+</center>
+
+
+
+</body>
+</html>

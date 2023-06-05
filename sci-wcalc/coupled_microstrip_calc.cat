@@ -1,0 +1,119 @@
+coupled_microstrip_calc()       Wcalc Commands       coupled_microstrip_calc()
+
+ccoouupplleedd__mmiiccrroossttrriipp__ccaallcc - Coupled microstrip transmission line analysis
+
+SSYYNNOOPPSSIISS
+       [z0,  k, z0e, z0o, kev, kev, loss, deltal] = coupled_microstrip_calc(w,
+       s, h, l, tmet, rho, rough, er, tand, f)
+
+IINNPPUUTT PPAARRAAMMEETTEERRSS
+       w         : width of coupled microstrip lines (meters)
+
+       s         : spacing between coupled microstrip lines (meters)
+
+       h         : substrate thickness (meters)
+
+       l         : lentgh of coupled microstrip line (meters)
+
+       tmet      : metal thickness (meters)
+
+       rho       : resistivity of the metal (ohm-meters)
+
+       rough     : conductor surface roughness (meters-rms)
+
+       er        : substrate relative permitivitty
+
+       tand      : substrate loss tangent
+
+       f         : analysis frequency (Hz)
+
+OOUUTTPPUUTT VVAALLUUEESS
+       z0        : calculated characteristic impedance (Ohms)
+
+       k         : calculated coupling coefficient
+
+       z0e       : calculated even mode characteristic impedance (Ohms)
+
+       z0o       : calculated odd mode characteristic impedance (Ohms)
+
+       kev       : calculated even mode effective relative permitivitty
+
+       kev       : calculated odd mode effective relative permitivitty
+
+       loss      : calculated loss of the line (dB)
+
+       deltal    : calculated open circuit end correction (meters)
+
+DDEESSCCRRIIPPTTIIOONN
+       Function  to  analyze  the  electrical  characteristics  of  a  coupled
+       microstrip  transmission  line.  The physical dimensions of the coupled
+       microstrip line are given as inputs and the  characteristic  impedance,
+       effective dielectric constant, loss and open circuit end correction are
+       calculated.
+
+       The model accounts  for  dispersion  (frequency  dependent  propagation
+       velocity).
+
+                     |<--W-->|<-S->|<--W-->|
+                      _______       -------
+                     | metal |     | metal | <- rho,rough
+           ----------------------------------------------
+          (  dielectric                         /|     (
+           )   er,tand                       H   |       )
+          (                                     /     (
+           ----------------------------------------------
+           XXXXXXXXXXXXXXXXXX ground XXXXXXXXXXXXXXXXXXXX
+
+EEXXAAMMPPLLEE
+        // mils to meters conversion factor
+              sf=25.4e-6;
+
+        // width
+              w=20*sf;
+
+        // spacing
+              s=8*sf;
+
+        // height
+              h=15*sf;
+
+        // length
+              l=1100*sf;
+
+        // metal thickness
+              tmet=1.4*sf;
+
+        // resitivity relative to copper
+              rho=1;
+
+        // metal surface roughness
+              rough=0.05*sf;
+
+        // relative dielectric constant
+              er=4.5;
+
+        // loss tangent
+              tand=0.01;
+
+        // frequency
+              f=2.4e9;
+              [z0,k,z0e,z0o,kev,kodd] = ...
+                coupled_microstrip_calc(w,s,h,l,tmet,rho,rough,er,tand,f);
+              disp(sprintf('z0=%g Ohms, k=%g',z0,k));
+              disp(sprintf('z0e=%g Ohms, z0o=%g Ohms',z0e,z0o));
+              disp(sprintf('kev=%g, kodd=%g',kev,kodd));
+
+SSEEEE AALLSSOO
+       stdio-wcalc(1),     air_coil_calc(),    air_coil_syn(),    coax_calc(),
+       coax_syn(), coplanar_calc(), coplanar_syn(), coupled_microstrip_calc(),
+       coupled_microstrip_syn(),         coupled_stripline_calc(),        cou-
+       pled_stripline_syn(),    ic_microstrip_calc(),     ic_microstrip_syn(),
+       microstrip_calc(), microstrip_syn(), stripline_calc(), stripline_syn()
+
+AAUUTTHHOORR
+       Dan McMahill
+
+BBUUGGSS
+       None known
+
+Wcalc                                                coupled_microstrip_calc()

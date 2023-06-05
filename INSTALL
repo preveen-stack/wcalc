@@ -1,0 +1,267 @@
+$Id: INSTALL,v 1.8 2009/02/07 04:10:03 dan Exp $
+
+
+Wcalc uses a standard GNU autoconf/automake/libtool based build
+system which should make compilation go smoothly on most unix-like
+systems.  Please do read this first section however.
+
+NOTE:  You must use GNU make to build wcalc.  Sorry, but there
+were some things I didn't see a good way of doing portably and
+once I went down that path I later used a few more GNU make
+extensions.  Other make implementations will *not* work.
+
+Wcalc includes several different frontends.  Because all users
+may not want to install all frontends (and the requesite dependencies)
+the build system is designed to allow the user to pick and choose
+which frontends to build and install.  In addition, the build 
+system is designed to allow additional frontends to be built and
+added to an existing installation.
+
+Please refer to the output of
+
+  ./configure --help
+
+for the most up to date details on the options which turn on/off
+the various frontends.
+
+In addition to the selection of which frontends should be built,
+the CGI frontend has some configurable paths which you may wish
+to change from the default.  For example if you may wish to
+use http://yourserver/~someuser/cgi-bin/ instead of
+http://yourserver/cgi-bin/ for the CGI frontend.
+
+If you wish to install the Wcalc web pages, add --enable-htdocs
+to the configure arguments.  There are some additional arguments
+which can specify the installation directory and also a URL to
+access the web pages by.  These latter two options are useful if
+you are installing Wcalc on a web server.  Installing the
+web pages is recommended because it provides additional
+documentation.
+
+To build and install everything use:
+
+./configure \
+        --enable-gtk2 \
+        --enable-htdocs \
+        --enable-stdio \
+        --with-matlab \
+        --with-octave \
+        --with-scilab \
+        --enable-cgi \
+        --enable-cgistatic 
+
+to use gtk1 instead of gtk2, use --enable-gtk1 instead of
+--enable-gtk1.
+
+Users such as the debian packaging system who do not wish to
+have the runtime library path added to the binaries may use
+--disable-rpath.
+
+-------------------------------------------------
+To try out the gtk interface before installing:
+
+  cd gtk-wcalc && ./runwcalc
+
+After installation, just run
+
+   wcalc
+
+-------------------------------------------------
+To try out the matlab interface before installing:
+
+  cd mex-wcalc && ./runmatlab
+
+After installing, just add the wcalc directory to your
+path in matlab with addpath.  This is typically 
+done with something like:
+
+  addpath('/usr/local/libexec/matlab/wcalc-0.7')
+
+in your ~/matlab/startup.m file.
+
+After building mex-wcalc, the file mex-wcalc/matlab_startup.m should have
+the correct paths for your system.
+
+
+-------------------------------------------------
+To try out the octave interface before installing:
+
+  cd octave-wcalc && ./runoctave
+
+After installing, you may need to add something like the following
+to your ~/.octaverc file:
+
+  LOADPATH = [ '/usr/local/libexec/octave/2.1.64/site/oct/alpha--netbsd/:/usr/local/share/octave/2.1.64/site/m/:', LOADPATH ];
+  EXEC_PATH = [ ''/usr/local/libexec/octave/2.1.64/site/oct/alpha--netbsd/:', EXEC_PATH ];
+
+After building octave-wcalc, the file octave-wcalc/octaverc should have the correct paths for
+your system.
+
+-------------------------------------------------
+To try out the scilab interface before installing:
+
+  cd sci-wcalc && scilab
+
+  from within scilab:
+
+    exec test_wcalc.sce;
+
+After installing, you'll want to put
+
+   exec /complete/install/path/to/load_wcalc.sce;
+
+in your scilab startup file (~/.scilab).
+
+After building sci-wcalc, the file sci-wcalc/dot_scilab should have
+the correct paths for your system.
+
+-------------------------------------------------
+To configure apache's http server to work with the cgi programs and web
+pages, I typically add something like this to the httpd.conf file which
+comes with apache:
+
+    Alias /wcalc/ "/usr/local/share/wcalc/"
+    <Directory "/usr/local/share/wcalc/">
+	Options Indexes MultiViews
+	AllowOverride None
+	Order allow,deny
+	Allow from all
+    </Directory>
+
+This will allow http://your.web.server/wcalc/ to access the wcalc web
+pages.
+
+To configure apache to work with the cgi scripts, you'll need somthing
+like this as well:
+
+    ScriptAlias /cgi-bin/ "/usr/local/libexec/cgi-bin/"
+    <Directory "/usr/local/libexec/cgi-bin">
+        AllowOverride None
+        Options None
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+Please refer to the documentation on your particular web server software
+for complete details on the web server configuration.
+
+-------- Standard GNU INSTALL Instructions Follow --------------------
+
+This is a generic INSTALL file for utilities distributions.
+If this package does not come with, e.g., installable documentation or
+data files, please ignore the references to them below.
+
+To compile this package:
+
+1.  Configure the package for your system.  In the directory that this
+file is in, type `./configure'.  If you're using `csh' on an old
+version of System V, you might need to type `sh configure' instead to
+prevent `csh' from trying to execute `configure' itself.
+
+The `configure' shell script attempts to guess correct values for
+various system-dependent variables used during compilation, and
+creates the Makefile(s) (one in each subdirectory of the source
+directory).  In some packages it creates a C header file containing
+system-dependent definitions.  It also creates a file `config.status'
+that you can run in the future to recreate the current configuration.
+
+Running `configure' takes a minute or two.  While it is running, it
+prints some messages that tell what it is doing.  If you don't want to
+see the messages, run `configure' with its standard output redirected
+to `/dev/null'; for example, `./configure >/dev/null'.
+
+To compile the package in a different directory from the one
+containing the source code, you must use a version of `make' that
+supports the VPATH variable, such as GNU `make'.  `cd' to the directory
+where you want the object files and executables to go and run
+`configure'.  `configure' automatically checks for the source code in
+the directory that `configure' is in and in `..'.  If for some reason
+`configure' is not in the source code directory that you are
+configuring, then it will report that it can't find the source code.
+In that case, run `configure' with the option `--srcdir=DIR', where
+DIR is the directory that contains the source code.
+
+By default, `make install' will install the package's files in
+/usr/local/bin, /usr/local/lib, /usr/local/man, etc.  You can specify an
+installation prefix other than /usr/local by giving `configure' the option
+`--prefix=PATH'.  Alternately, you can do so by consistently giving a value
+for the `prefix' variable when you run `make', e.g.,
+	make prefix=/usr/gnu
+	make prefix=/usr/gnu install
+
+You can specify separate installation prefixes for
+architecture-specific files and architecture-independent files.  If
+you give `configure' the option `--exec-prefix=PATH' or set the
+`make' variable `exec_prefix' to PATH, the package will use PATH as
+the prefix for installing programs and libraries.  Data files and
+documentation will still use the regular prefix.  Normally, all files
+are installed using the regular prefix.
+
+Another `configure' option is useful mainly in `Makefile' rules for
+updating `config.status' and `Makefile'.  The `--no-create' option
+figures out the configuration for your system and records it in
+`config.status', without actually configuring the package (creating
+`Makefile's and perhaps a configuration header file).  Later, you can
+run `./config.status' to actually configure the package.  You can also
+give `config.status' the `--recheck' option, which makes it re-run
+`configure' with the same arguments you used before.  This option is
+useful if you change `configure'.
+
+Some packages pay attention to `--with-PACKAGE' options to `configure',
+where PACKAGE is something like `gnu-libc' or `x' (for the X Window System).
+The README should mention any --with- options that the package recognizes.
+
+`configure' ignores any other arguments that you give it.
+
+If your system requires unusual options for compilation or linking
+that `configure' doesn't know about, you can give `configure' initial
+values for some variables by setting them in the environment.  In
+Bourne-compatible shells, you can do that on the command line like
+this:
+	CC='gcc -traditional' DEFS=-D_POSIX_SOURCE ./configure
+
+The `make' variables that you might want to override with environment
+variables when running `configure' are:
+
+(For these variables, any value given in the environment overrides the
+value that `configure' would choose:)
+CC		C compiler program.
+		Default is `cc', or `gcc' if `gcc' is in your PATH.
+INSTALL		Program to use to install files.
+		Default is `install' if you have it, `cp' otherwise.
+
+(For these variables, any value given in the environment is added to
+the value that `configure' chooses:)
+DEFS		Configuration options, in the form `-Dfoo -Dbar ...'
+		Do not use this variable in packages that create a
+		configuration header file.
+LIBS		Libraries to link with, in the form `-lfoo -lbar ...'
+
+If you need to do unusual things to compile the package, we encourage
+you to figure out how `configure' could check whether to do them, and
+mail diffs or instructions to the address given in the README so we
+can include them in the next release.
+
+2.  Type `make' to compile the package.  If you want, you can override
+the `make' variables CFLAGS and LDFLAGS like this:
+
+	make CFLAGS=-O2 LDFLAGS=-s
+
+3.  If the package comes with self-tests and you want to run them,
+type `make check'.  If you're not sure whether there are any, try it;
+if `make' responds with something like
+	make: *** No way to make target `check'.  Stop.
+then the package does not come with self-tests.
+
+4.  Type `make install' to install programs, data files, and
+documentation.
+
+5.  You can remove the program binaries and object files from the
+source directory by typing `make clean'.  To also remove the
+Makefile(s), the header file containing system-dependent definitions
+(if the package uses one), and `config.status' (all the files that
+`configure' created), type `make distclean'.
+
+The file `configure.in' is used as a template to create `configure' by
+a program called `autoconf'.  You will only need it if you want to
+regenerate `configure' using a newer version of `autoconf'.

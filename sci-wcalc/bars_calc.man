@@ -1,0 +1,116 @@
+
+.\" Copyright (c), 2005 Dan McMahill
+.\" Do not edit this directly.  Edit the XML source file instead
+.\"
+
+.TH bars_calc "" "" "Wcalc" "Wcalc Commands"
+.B bars_calc
+- Self and mutual inductance of a pair of parallel rectangular bars
+
+.SH SYNOPSIS
+
+[L1, L2, M, k] = 
+bars_calc(a, b, l1, d, c, l2, E, P, l3, freq)
+
+
+.SH INPUT PARAMETERS
+
+.TP 10
+a
+: Width of bar 1 (meters)
+.TP 10
+b
+: Thickness of bar 1 (meters)
+.TP 10
+l1
+: Length of bar 1 (meters)
+.TP 10
+d
+: Width of bar 2 (meters)
+.TP 10
+c
+: Thickness of bar 2 (meters)
+.TP 10
+l2
+: Length of bar 2 (meters)
+.TP 10
+E
+: Position of bar 2 in the width direction (meters)
+.TP 10
+P
+: Position of bar 2 in the thickness direction (meters)
+.TP 10
+l3
+: Position of bar 2 in the length direction (meters)
+.TP 10
+freq
+: analysis frequency (Hertz)
+
+.SH OUTPUT VALUES
+
+.TP 10
+L1
+: Bar 1 self inductance (Henries)
+.TP 10
+L2
+: Bar 2 self inductance (Henries)
+.TP 10
+M
+: Mutual inductance (Henries)
+.TP 10
+k
+: Coupling coefficient
+.SH DESCRIPTION
+
+Function to analyze the self and mutual inductances of two parallel
+rectanglar bars.
+
+.SH EXAMPLE
+.nf
+
+.TP
+ // Width of bar #1
+a=10e-6;
+.TP
+ // Thickness of bar #1
+b=1e-6;
+.TP
+ // Length of bar #1
+l1=1e-3;
+.TP
+ // Width of bar #2
+d=10e-6;
+.TP
+ // Thickness of bar #2
+c=1e-6;
+.TP
+ // Length of bar #2
+l2=1e-3;
+.TP
+ // Position of bar #2 in the width direction
+E=12e-6;
+.TP
+ // Position of bar #2 in the thickness direction
+P=0;
+.TP
+ // Position of bar #2 in the length direction
+l3=0;
+.TP
+ // 1 GHz operation
+f=1e9;
+[L1, L2, M, k] = bars_calc(a,b,l1,d,c,l2,E,P,l3,f);
+disp(sprintf('L1=%g nH',L1*1e9));
+disp(sprintf('L2=%g nH',L2*1e9));
+disp(sprintf('M =%g nH',M*1e9));
+disp(sprintf('k =%g',k));
+.fi
+.SH SEE ALSO
+stdio-wcalc(1),
+air_coil_calc(), air_coil_syn(), coax_calc(), bars_calc(), coax_syn(), coplanar_calc(), coplanar_syn(), coupled_microstrip_calc(), coupled_microstrip_syn(), coupled_stripline_calc(), coupled_stripline_syn(), ic_microstrip_calc(), ic_microstrip_syn(), microstrip_calc(), microstrip_syn(), stripline_calc(), stripline_syn()
+.SH AUTHOR
+
+Dan McMahill
+
+.SH BUGS
+
+None known

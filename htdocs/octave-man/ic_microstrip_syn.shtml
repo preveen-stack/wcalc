@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: man_start.incl,v 1.2 2004/07/28 11:51:14 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+<title>Octave-Wcalc: ic_microstrip_syn</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!--#include virtual="page_start.incl"-->
+
+<!-- The main action area -->
+    <center>
+    <font face="helvetica, arial" size="+2">
+      Octave-Wcalc: ic_microstrip_syn
+    </font>
+    <br>
+    <br>
+    </center>
+
+    <font face="courier, helvetica, arial" size="-1">
+    
+ic_microstrip_syn - Integrated circuit microstrip transmission line synthesis
+<h2>SYNOPSIS</h2>
+[w_out, h_out, tox_out, l_out] = 
+ic_microstrip_syn(z0, w, h, l, tmet, rho, rough, er, tand, f, flag)
+<h2>PARAMETERS</h2><h3>INPUT PARAMETERS</h3><ul>
+<li>z0
+: desired characteristic impedance (Ohms)</li>
+<li>w
+: width of ic_microstrip line (meters)</li>
+<li>h
+: substrate thickness (meters)</li>
+<li>l
+: lentgh of ic_microstrip line (meters)</li>
+<li>tmet
+: metal thickness (meters)</li>
+<li>rho
+: resistivity of wire (relative to copper)</li>
+<li>rough
+: conductor surface roughness (meters-rms)</li>
+<li>er
+: substrate relative permitivitty</li>
+<li>tand
+: substrate loss tangent</li>
+<li>f
+: synthesis frequency (Hz)</li>
+<li>flag
+: indicates which parameters should be optimized
+    <ul>
+<li>flag=1 : synthesize the metal width</li>
+<li>flag=1 : synthesize the substrate thickness</li>
+<li>flag=2 : synthesize the oxide thickness</li>
+</ul>
+</li>
+</ul><h3>OUTPUT VALUES</h3><ul>
+<li>w_out
+: calculated metal width</li>
+<li>h_out
+: calculated substrate thickness</li>
+<li>tox_out
+: calculated oxide thickness</li>
+<li>l_out
+: calculated metal length</li>
+</ul><h2>DESCRIPTION</h2><p>
+Function to synthesize the physical dimenstions of a single
+ic_microstrip transmission line to achieve a desired characteristic
+impedance and electrical length.  The desired characteristic
+impedance and some of the physical
+dimensions of the ic_microstrip line are given as inputs and the
+remaining dimensions are calculated.
+
+The model accounts for dispersion (frequency dependent propagation
+velocity).
+
+<tt><pre>
+
+                 |&lt;--W--&gt;|
+                  _______    
+                 | metal | &lt;- tmet,rho,rough
+    ----------------------------------------------
+   {**************  Oxide (tox,eox) **************
+    ----------------------------------------------
+   (  substrate                          /|\     (
+    )   es,sigmas                     H   |       )
+   (                                     \|/     (
+    ----------------------------------------------
+    XXXXXXXXXXXXXXXXXX ground XXXXXXXXXXXXXXXXXXXX
+
+
+</pre></tt></p><h2>EXAMPLE</h2><pre> % desired impedance
+z0=75;
+ % desired electrical length (degrees)
+elen=90;
+ % micron to meters conversion factor
+sf=1.0e-6;
+ % width 
+w=160e-6;
+ % length
+l=1000e-6;
+ % oxide thickness
+tox=1.0e-6;
+ % oxide relative dielectric constant
+eox=4.0;
+ % substrate thickness
+h=250e-6;
+ % substrate relative dielectric constant
+es=11.8;
+ % substrate conductivity (1/(ohm-m))
+sigmas=10;
+ % metal thickness
+tmet=1.6e-6;
+ % metal resitivity (ohm-m)
+rho=3e-8;
+ % metal surface roughness
+rough=0;
+ % frequency
+f=2.4e9;
+ % synthesize width
+flag=0;
+[w_out,h_out,tox_out,l_out] = ...
+    ic_microstrip_syn(z0,elen,w,l,tox,eox,h,es,sigmas,tmet,rho,rough,f,flag);
+disp(sprintf('w   = %8.3g um', w_out*1e6));
+disp(sprintf('h   = %8.3g um', h_out*1e6));
+disp(sprintf('tox = %8.3g um', tox_out*1e6));
+disp(sprintf('l   = %8.3g um', l_out*1e6));
+</pre><h2>SEE ALSO</h2><p><a href="air_coil_calc.html">air_coil_calc</a><br>
+
+<a href="air_coil_syn.html">air_coil_syn</a><br>
+
+<a href="coax_calc.html">coax_calc</a><br>
+
+<a href="coax_syn.html">coax_syn</a><br>
+
+<a href="coplanar_calc.html">coplanar_calc</a><br>
+
+<a href="coplanar_syn.html">coplanar_syn</a><br>
+
+<a href="coupled_microstrip_calc.html">coupled_microstrip_calc</a><br>
+
+<a href="coupled_microstrip_syn.html">coupled_microstrip_syn</a><br>
+
+<a href="coupled_stripline_calc.html">coupled_stripline_calc</a><br>
+
+<a href="coupled_stripline_syn.html">coupled_stripline_syn</a><br>
+
+<a href="ic_microstrip_calc.html">ic_microstrip_calc</a><br>
+
+<a href="ic_microstrip_syn.html">ic_microstrip_syn</a><br>
+
+<a href="microstrip_calc.html">microstrip_calc</a><br>
+
+<a href="microstrip_syn.html">microstrip_syn</a><br>
+
+<a href="stripline_calc.html">stripline_calc</a><br>
+
+<a href="stripline_syn.html">stripline_syn</a><br>
+
+</p><h2>AUTHOR</h2><p>
+Dan McMahill
+</p><h2>BUGS</h2><p>
+None known
+</p><p>
+Please report any bugs on the <a href="http://wcalc.sf.net">
+Wcalc Sourceforge Project Page</a></p>
+<!-- $Id: man_end.incl,v 1.1 2002/06/18 01:24:49 dan Exp $ -->
+
+    <P>Return to the <a href="../octave-wcalc.html">Octave-Wcalc</a> page.</P>
+    </font>
+
+  </td>
+
+</tr>
+
+<!-- The left hand column -->
+<!--#include virtual="left_column.incl"-->
+
+</table>
+<p>
+
+<!--#include virtual="main_footer.incl"-->
+
+
+</body>
+</html>

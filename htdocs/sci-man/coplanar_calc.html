@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: man_start.incl,v 1.5 2004/07/28 11:51:14 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+<title>Sci-Wcalc: coplanar_calc</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!-- $Id: page_start.incl,v 1.3 2002/05/10 22:49:37 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002 Dan McMahill, All rights reserved. -->
+
+<body bgcolor="#ffffff" text="#000000" link="#3535c5" vlink="#700080">
+
+<table border="0" cellspacing="0" cellpadding="5"><tr>
+  <td></td>
+  <td rowspan=2 valign="top" width="100%">
+
+
+
+<!-- The main action area -->
+    <center>
+    <font face="helvetica, arial" size="+2">
+      Sci-Wcalc: coplanar_calc
+    </font>
+    <br>
+    <br>
+    </center>
+
+    <font face="courier, helvetica, arial" size="-1">
+    
+coplanar_calc - Symmetric coplanar transmission line analysis
+<h2>SYNOPSIS</h2>
+[z0, keff, elen, loss, L, R, C, G, lc, ld, deltal, depth] = 
+coplanar_calc(w, s, h, l, tmet, rho, rough, er, tand, with_ground, f)
+<h2>PARAMETERS</h2><h3>INPUT PARAMETERS</h3><ul>
+<li>w
+: width of coplanar line (meters)</li>
+<li>s
+: space between line the the coplanar ground (meters)</li>
+<li>h
+: substrate thickness (meters)</li>
+<li>l
+: lentgh of coplanar line (meters)</li>
+<li>tmet
+: metal thickness (meters)</li>
+<li>rho
+: resistivity of the line (relative to copper)</li>
+<li>rough
+: conductor surface roughness (meters-rms)</li>
+<li>er
+: substrate relative permitivitty</li>
+<li>tand
+: substrate loss tangent</li>
+<li>with_ground
+: 0 for no bottom side ground, 1 for bottom side ground plane</li>
+<li>f
+: analysis frequency (Hz)</li>
+</ul><h3>OUTPUT VALUES</h3><ul>
+<li>z0
+: calculated characteristic impedance (Ohms)</li>
+<li>keff
+: calculated effective relative permitivity</li>
+<li>elen
+: calculated electrical length of the line (degrees)</li>
+<li>loss
+: calculated loss of the line (dB)</li>
+<li>L
+: calculated inductance per length (Henries/meter)</li>
+<li>R
+: calculated resistance per length (Ohms/meter)</li>
+<li>C
+: calculated capacitance per length (Farads/meter)</li>
+<li>G
+: calculated conductance per length (Siemens/meter)</li>
+<li>lc
+: conductor loss (dB/meter)</li>
+<li>ld
+: dielectric loss (dB/meter)</li>
+<li>deltal
+: calculated open circuit end correction (meters)</li>
+<li>depth
+: calculated skin depth (meters)</li>
+</ul><h2>DESCRIPTION</h2><p>
+Function to analyze the electrical characteristics of a single 
+coplanar transmission line. The physical
+dimensions of the coplanar line are given as inputs and the
+characteristic impedance, effective dielectric constant, loss and
+open circuit end correction are calculated.
+
+The model accounts for dispersion (frequency dependent propagation
+velocity).
+
+<tt><pre>
+
+           |&lt;--S--&gt;|&lt;--W--&gt;|&lt;--S--&gt;|
+     ______         _______         ______ 
+    )      |       | metal |       |      ( &lt;- rho,rough
+    ----------------------------------------------
+   (  dielectric                         /|\     (
+    )   er,tand                       H   |       )
+   (                                     \|/     (
+    ----------------------------------------------
+    XXXXXXXXXXXXXXXXXX ground XXXXXXXXXXXXXXXXXXXX
+
+</pre></tt></p><h2>EXAMPLE</h2><pre> // mils to meters conversion factor
+sf=25.4e-6;
+ // width
+w=20*sf;
+ // space
+s=20*sf;
+ // height
+h=15*sf;
+ // length
+l=1100*sf;
+ // metal thickness
+tmet=1.4*sf;
+ // resitivity
+rho=1.72e-8;
+ // metal surface roughness
+rough=0.05*sf;
+ // relative dielectric constant
+er=4.5;
+ // loss tangent
+tand=0.01;
+ // frequency
+f=2.4e9;
+[z0,keff,elen,loss,L,R,C,G,lc,ld,deltal,depth] = ...
+  coplanar_calc(w,s,h,l,tmet,rho,rough,er,tand,0,f);
+disp(sprintf('z0   = %8.4g Ohms', z0));
+disp(sprintf('keff = %8.4g ', keff));
+disp(sprintf('elen = %8.4g degrees', elen));
+disp(sprintf('loss = %8.4g dB', loss));
+disp(sprintf('L    = %8.4g H/m', L));
+disp(sprintf('R    = %8.4g Ohms/m', R));
+disp(sprintf('C    = %8.4g F/m', C));
+disp(sprintf('G    = %8.4g S/m', G));
+disp(sprintf('lc   = %8.4g dB/m', lc));
+disp(sprintf('ld   = %8.4g dB/m', ld));
+disp(sprintf('open end correction = %8.4g mil', deltal/sf));
+disp(sprintf('skin depth = %8.4g um', depth*1e6));
+</pre><h2>SEE ALSO</h2><p><a href="air_coil_calc.html">air_coil_calc</a><br>
+
+<a href="air_coil_syn.html">air_coil_syn</a><br>
+
+<a href="coax_calc.html">coax_calc</a><br>
+
+<a href="coax_syn.html">coax_syn</a><br>
+
+<a href="coplanar_calc.html">coplanar_calc</a><br>
+
+<a href="coplanar_syn.html">coplanar_syn</a><br>
+
+<a href="coupled_microstrip_calc.html">coupled_microstrip_calc</a><br>
+
+<a href="coupled_microstrip_syn.html">coupled_microstrip_syn</a><br>
+
+<a href="coupled_stripline_calc.html">coupled_stripline_calc</a><br>
+
+<a href="coupled_stripline_syn.html">coupled_stripline_syn</a><br>
+
+<a href="ic_microstrip_calc.html">ic_microstrip_calc</a><br>
+
+<a href="ic_microstrip_syn.html">ic_microstrip_syn</a><br>
+
+<a href="microstrip_calc.html">microstrip_calc</a><br>
+
+<a href="microstrip_syn.html">microstrip_syn</a><br>
+
+<a href="stripline_calc.html">stripline_calc</a><br>
+
+<a href="stripline_syn.html">stripline_syn</a><br>
+
+</p><h2>AUTHOR</h2><p>
+Dan McMahill
+</p><h2>BUGS</h2><p>
+None known, but this module is only moderately tested
+</p><p>
+Please report any bugs on the <a href="http://wcalc.sf.net">
+Wcalc Sourceforge Project Page</a></p>
+<!-- $Id: man_end.incl,v 1.3 2001/10/30 04:08:24 dan Exp $ -->
+    
+    <P>Return to the <a href="../sci-wcalc.html">Sci-Wcalc</a> page.</P>
+    </font>
+
+  </td>
+
+</tr>
+
+<!-- The left hand column -->
+<!-- $Id: left_column.incl,v 1.22 2009/02/28 03:33:02 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2005, 2006 Dan McMahill, All rights reserved. -->
+<tr>
+  <td valign="top">
+
+  <table width="100%" cellspacing=0 cellpadding=0 border=0>
+  <tr>
+  <td>
+  <img src="../logo.png" width="197" height="161"
+   alt="Wcalc Logo">
+  </td></tr>
+  </table>
+
+  <br>
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Information</b>
+    </font>
+    </td></tr>
+   <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../about.html">About Wcalc</a><br>
+	&nbsp;<a href="../bugs.html">Reporting bugs</a><br>
+	&nbsp;<a href="../projects.html">Current projects</a><br>
+	&nbsp;<a href="../obtaining.html">Obtaining Wcalc</a><br>
+	&nbsp;<a href="../tech.html">Technical Notes</a><br>
+	&nbsp;<a href="../faq.html">Wcalc F.A.Q.</a><br>
+	&nbsp;<a href="../index.html">Wcalc Home</a><br>
+	&nbsp;<a href="../http://sourceforge.net/projects/wcalc">Wcalc Sourceforge Project</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Models</b>
+    </font>
+    </td></tr>
+    <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../air_coil.html">Air Core Solenoid Inductor</a><br>
+	&nbsp;<a href="../bars.html">Parallel Rectangular Bars Inductance</a><br>
+	&nbsp;<a href="../coax.html">Coaxial Transmission Line</a><br>
+	&nbsp;<a href="../coplanar.html">Coplanar Waveguide</a><br>
+	&nbsp;<a href="../coupled_microstrip.html">Coupled Microstrip</a><br>
+	&nbsp;<a href="../coupled_stripline.html">Coupled Stripline</a><br>
+	&nbsp;<a href="../ic_microstrip.html">Integrated Circuit Microstrip</a><br>
+	&nbsp;<a href="../microstrip.html">Microstrip</a><br>
+	&nbsp;<a href="../parallel_rc.html">Series/Parallel RC Network</a><br>
+	&nbsp;<a href="../parallel_rl.html">Series/Parallel RL Network</a><br>
+	&nbsp;<a href="../stripline.html">Stripline</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Frontends</b>
+    </font>
+    </td></tr>
+    <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../cgi-wcalc.html">CGI-Wcalc (Web Interface)</a><br>
+	&nbsp;<a href="../gtk-wcalc.html">GTK-Wcalc (GUI Interface)</a><br>
+	&nbsp;<a href="../mex-wcalc.html">MEX-Wcalc (Matlab Interface)</a><br>
+	&nbsp;<a href="../octave-wcalc.html">Octave-Wcalc (Octave Interface)</a><br>
+	&nbsp;<a href="../sci-wcalc.html">SCI-Wcalc (Scilab Interface)</a><br>
+	&nbsp;<a href="../stdio-wcalc.html">STDIO-Wcalc (Simple stdio Interface)</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  <table width="100%" cellspacing=0 cellpadding=2 border=0>
+  <tr>
+  <td bgcolor="#000000">
+    <table width="100%" cellspacing=0 cellpadding=4 border=0>
+  <tr><td bgcolor="#e0e0f0" nowrap>
+    <font face="helvetica, arial" color="#000066">
+      <b>Misc. Info.</b>
+    </font>
+    </td></tr>
+    <tr><td bgcolor="#FFFFFF" nowrap>
+      <font face="helvetica, arial" size="-1">
+	&nbsp;<a href="../permeability.html">Permeabilities</a><br>
+	&nbsp;<a href="../permitivity.html">Permitivities</a><br>
+	&nbsp;<a href="../resistivity.html">Resistivities</a><br>
+	&nbsp;<a href="../units.html">Unit Conversion Factors</a><br>
+	&nbsp;<a href="../AWG.html">Wire Sizes</a><br>
+      </font>
+    </td></tr></table>
+    </tr>
+  </table>
+
+  <br>
+
+  </td>
+</tr>
+
+
+
+</table>
+<p>
+
+<!-- $Id: main_footer.incl,v 1.7 2006/01/03 00:10:15 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004, 2005, 2006 Dan McMahill, All rights reserved. -->
+
+<center>
+<table border=0 cellpadding=0 cellspacing=0><tr>
+  <td width=25>&nbsp;</td>
+
+
+
+
+
+
+
+
+
+  <td width=25>&nbsp;</td>
+
+  <td valign="center" align="center">
+  <address>
+    <font color="#000000" size="-1">
+      Copyright &copy; 2001, 2002, 2004, 2005, 2006
+      Dan McMahill  ALL RIGHTS RESERVED.
+    </font>
+  </address>
+  </td>
+
+  <td width=25>&nbsp;</td>
+
+
+
+
+
+
+
+
+
+</tr></table>
+</center>
+
+
+
+</body>
+</html>

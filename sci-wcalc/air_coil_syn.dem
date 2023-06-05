@@ -1,0 +1,38 @@
+// $Id: air_coil_syn.dem,v 1.2 2009/01/11 04:22:23 dan Exp $
+//
+// Copyright (c) 2001, 2005 Dan McMahill
+// All rights reserved.
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; version 2 of the License.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+// -----------------------------------------------
+// Air Core Inductor Synthesis
+// -----------------------------------------------
+
+// synthesize N and len with N minimized
+L    = 220e-9;  // Desired inductance
+AWG  = 22;      // wire size (AWG)
+dia  = 0.14*sf; // inside diameter of coil
+f    = 50e6;    // operating frequency (Hz)
+
+
+
+// synthesize len with N fixed
+L    = 220e-9;  // Desired inductance
+N    = 8;       // Fixed # of turns
+AWG  = 22;      // wire size (AWG)
+dia  = 0.14;    // inside diameter of coil
+f    = 50e6;    // operating frequency (Hz)
+
+

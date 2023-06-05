@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: coax.shtml,v 1.12 2009/02/28 03:21:20 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<title>Wcalc Coaxial Transmission Line Model</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coax,
+coaxial,
+coaxial transmission line,
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!--#include virtual="page_start.incl"-->
+
+<!-- The main action area -->
+    <center>
+    <font face="helvetica, arial" size="+2">
+      Wcalc Coaxial Transmission Line Model
+    </font>
+    <br>
+    <br>
+    <img src="coax.png"
+    alt="Coaxial Transmission Line Image" width="327" height="243" hspace="10" vspace="5">
+    </center>
+
+    <font face="helvetica, arial">
+    <HR> 
+    <H2><A NAME="References">Selected References</A></H2>
+    <OL>
+      <LI>
+	H. A. Wheeler, "Formulas for the skin effect", <em>Proc. IRE</em>,
+	Vol. 30, No. 9, September 1942, pp. 412-4124
+      </LI>
+      
+      <LI>
+	Stanislaw Rosloniec,
+	<em>Algorithms For Computer-Aided Design of Linear Microwave Circuits</em>,
+	Archtech House, 1990
+      </LI>
+
+      <LI>
+	John Karahask, 
+	<em>Transmission Lines and Filter Networks</em>, 
+	MacMillan, 1950, New York
+      </LI>
+      
+      <LI>
+	Robert Colin,
+	<em>Foundations for Microwave Engineering</em>, 
+	McGraw-Hill, Inc. 1966, page 81.
+      </LI>
+      
+      <LI>
+      	Ruel V. Churchill and James Ward Brown,
+	<em>Complex Variables and Applications, 4th ed.</em>, 
+	McGraw-Hill, Inc., 1984, New York.  This book includes an
+	appendix with a catalog of conformal transformations of
+	regions.  A transform which is most useful for coax lines with
+	offset center conductor may be found here.
+      </LI>
+      
+    </OL>
+
+    <HR> 
+    <H2><A NAME="comments">Comments</A></H2>
+    <P>
+    Coaxial transmission lines are almost always used in a frequency
+    region where only the transverse electric magnetic (TEM) mode will
+    propagate.  Several texts give an approximate formula for the
+    cutoff frequency for the lowest order TE mode but most do not
+    provide details on the exact calculation.  The general solution
+    can be found by following the texts on circular waveguides but
+    recognizing that we have a boundary condition imposed by the
+    center conductor which is different than the boundary condition
+    imposed by a hollow pipe.  Wcalc uses a numerical iteration to
+    find the constants which satisfy the boundary conditions to in
+    theory provide an exact solution.
+    </P>
+
+    <HR> 
+    <H2><A NAME="bugs">Known Issues</A></H2>
+    <OL>
+        <LI>The TE10 cutoff calculation is based on c=0 (center
+    conductor is not offset from center).  If anyone cares to offer a
+    suggestion on how to solve for the TE10 cutoff frequency when c is
+    not zero, please let me know.  
+        </LI>
+    </OL>
+
+    </font>
+
+  </td>
+
+</tr>
+
+<!-- The left hand column -->
+<!--#include virtual="left_column.incl"-->
+
+</table>
+<p>
+
+<!--#include virtual="main_footer.incl"-->
+
+
+</body>
+</html>

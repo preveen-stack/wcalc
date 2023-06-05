@@ -1,0 +1,171 @@
+
+.\" Copyright (c), 2005 Dan McMahill
+.\" Do not edit this directly.  Edit the XML source file instead
+.\"
+
+.TH microstrip_calc "" "" "Wcalc" "Wcalc Commands"
+.B microstrip_calc
+- Symmetric microstrip transmission line analysis
+
+.SH SYNOPSIS
+
+[z0, keff, elen, loss, L, R, C, G, lc, ld, deltal, depth] = 
+microstrip_calc(w, h, l, tmet, rho, rough, er, tand, f)
+
+
+.SH INPUT PARAMETERS
+
+.TP 10
+w
+: width of microstrip line (meters)
+.TP 10
+h
+: substrate thickness (meters)
+.TP 10
+l
+: lentgh of microstrip line (meters)
+.TP 10
+tmet
+: metal thickness (meters)
+.TP 10
+rho
+: resistivity of the line (relative to copper)
+.TP 10
+rough
+: conductor surface roughness (meters-rms)
+.TP 10
+er
+: substrate relative permitivitty
+.TP 10
+tand
+: substrate loss tangent
+.TP 10
+f
+: analysis frequency (Hz)
+
+.SH OUTPUT VALUES
+
+.TP 10
+z0
+: calculated characteristic impedance (Ohms)
+.TP 10
+keff
+: calculated effective relative permitivity
+.TP 10
+elen
+: calculated electrical length of the line (degrees)
+.TP 10
+loss
+: calculated loss of the line (dB)
+.TP 10
+L
+: calculated inductance per length (Henries/meter)
+.TP 10
+R
+: calculated resistance per length (Ohms/meter)
+.TP 10
+C
+: calculated capacitance per length (Farads/meter)
+.TP 10
+G
+: calculated conductance per length (Siemens/meter)
+.TP 10
+lc
+: conductor loss (dB/meter)
+.TP 10
+ld
+: dielectric loss (dB/meter)
+.TP 10
+deltal
+: calculated open circuit end correction (meters)
+.TP 10
+depth
+: calculated skin depth (meters)
+.SH DESCRIPTION
+
+Function to analyze the electrical characteristics of a single 
+microstrip transmission line. The physical
+dimensions of the microstrip line are given as inputs and the
+characteristic impedance, effective dielectric constant, loss and
+open circuit end correction are calculated.
+
+The model accounts for dispersion (frequency dependent propagation
+velocity).
+
+
+.NF
+
+
+
+                 |<--W-->|
+                  _______    
+                 | metal | <- rho,rough
+    ----------------------------------------------
+   (  dielectric                         /|\     (
+    )   er,tand                       H   |       )
+   (                                     \|/     (
+    ----------------------------------------------
+    XXXXXXXXXXXXXXXXXX ground XXXXXXXXXXXXXXXXXXXX
+
+
+
+.FI
+
+.SH EXAMPLE
+.nf
+
+.TP
+ // mils to meters conversion factor
+sf=25.4e-6;
+.TP
+ // width
+w=20*sf;
+.TP
+ // height
+h=15*sf;
+.TP
+ // length
+l=1100*sf;
+.TP
+ // metal thickness
+tmet=1.4*sf;
+.TP
+ // resitivity
+rho=1.72e-8;
+.TP
+ // metal surface roughness
+rough=0.05*sf;
+.TP
+ // relative dielectric constant
+er=4.5;
+.TP
+ // loss tangent
+tand=0.01;
+.TP
+ // frequency
+f=2.4e9;
+[z0,keff,elen,loss,L,R,C,G,lc,ld,deltal,depth] = ...
+  microstrip_calc(w,h,l,tmet,rho,rough,er,tand,f);
+disp(sprintf('z0   = %8.4g Ohms', z0));
+disp(sprintf('keff = %8.4g ', keff));
+disp(sprintf('elen = %8.4g degrees', elen));
+disp(sprintf('loss = %8.4g dB', loss));
+disp(sprintf('L    = %8.4g H/m', L));
+disp(sprintf('R    = %8.4g Ohms/m', R));
+disp(sprintf('C    = %8.4g F/m', C));
+disp(sprintf('G    = %8.4g S/m', G));
+disp(sprintf('lc   = %8.4g dB/m', lc));
+disp(sprintf('ld   = %8.4g dB/m', ld));
+disp(sprintf('open end correction = %8.4g mil', deltal/sf));
+disp(sprintf('skin depth = %8.4g um', depth*1e6));
+.fi
+.SH SEE ALSO
+stdio-wcalc(1),
+air_coil_calc(), air_coil_syn(), coax_calc(), coax_syn(), coplanar_calc(), coplanar_syn(), coupled_microstrip_calc(), coupled_microstrip_syn(), coupled_stripline_calc(), coupled_stripline_syn(), ic_microstrip_calc(), ic_microstrip_syn(), microstrip_calc(), microstrip_syn(), stripline_calc(), stripline_syn()
+.SH AUTHOR
+
+Dan McMahill
+
+.SH BUGS
+
+None known

@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: man_start.incl,v 1.5 2004/07/28 11:51:14 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+<title>Sci-Wcalc: microstrip_syn</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!--#include virtual="page_start.incl"-->
+
+<!-- The main action area -->
+    <center>
+    <font face="helvetica, arial" size="+2">
+      Sci-Wcalc: microstrip_syn
+    </font>
+    <br>
+    <br>
+    </center>
+
+    <font face="courier, helvetica, arial" size="-1">
+    
+microstrip_syn - Single microstrip transmission line synthesis
+<h2>SYNOPSIS</h2>
+[w_out, h_out, l_out, er_out] = 
+microstrip_syn(z0, w, h, l, tmet, rho, rough, er, tand, f, flag)
+<h2>PARAMETERS</h2><h3>INPUT PARAMETERS</h3><ul>
+<li>z0
+: desired characteristic impedance (Ohms)</li>
+<li>w
+: width of microstrip line (meters)</li>
+<li>h
+: substrate thickness (meters)</li>
+<li>l
+: lentgh of microstrip line (meters)</li>
+<li>tmet
+: metal thickness (meters)</li>
+<li>rho
+: resistivity of the metalization (relative to copper)</li>
+<li>rough
+: conductor surface roughness (meters-rms)</li>
+<li>er
+: substrate relative permitivitty</li>
+<li>tand
+: substrate loss tangent</li>
+<li>f
+: synthesis frequency (Hz)</li>
+<li>flag
+: indicates which parameters should be optimized
+    <ul>
+<li>flag=1 : synthesize the metal width</li>
+<li>flag=1 : synthesize the substrate thickness</li>
+<li>flag=2 : synthesize the substrate dielectric constant</li>
+<li>flag=3 : synthesize the metal length</li>
+</ul>
+</li>
+</ul><h3>OUTPUT VALUES</h3><ul>
+<li>w_out
+: Calculated width of microstrip line (meters)</li>
+<li>h_out
+: Calculated height of microstrip line (meters)</li>
+<li>l_out
+: Calculated length of microstrip line (meters)</li>
+<li>er_out
+: Calculated substrate relative permitivitty of microstrip line</li>
+</ul><h2>DESCRIPTION</h2><p>
+Function to synthesize the physical dimenstions of a single
+microstrip transmission line to achieve a desired characteristic
+impedance and electrical length.  The desired characteristic
+impedance and some of the physical
+dimensions of the microstrip line are given as inputs and the
+remaining dimensions are calculated.
+
+<tt><pre>
+
+                 |&lt;--W--&gt;|
+                  _______    
+                 | metal | &lt;- rho,rough
+    ----------------------------------------------
+   (  dielectric                         /|\     (
+    )   er,tand                       H   |       )
+   (                                     \|/     (
+    ----------------------------------------------
+    XXXXXXXXXXXXXXXXXX ground XXXXXXXXXXXXXXXXXXXX
+
+
+</pre></tt></p><h2>EXAMPLE</h2><pre> // mils to meters conversion factor
+sf=25.4e-6;
+ // desired impedance
+z0=75;
+ // desired electrical length (degrees)
+elen=90;
+ // width (we'll synthesize this)
+w=0;
+ // height
+h=62*sf;
+ // length
+l=1100*sf;
+ // metal thickness
+tmet=1.4*sf;
+ // resitivity
+rho=1.72e-8;
+ // metal surface roughness
+rough=0.05*sf;
+ // relative dielectric constant
+er=4.5;
+ // loss tangent
+tand=0.01;
+ // frequency
+f=2.4e9;
+ // synthesize width
+flag=0;
+[w_out,h_out,l_out,er_out] = ...
+  microstrip_syn(z0,elen,w,h,l,tmet,rho,rough,er,tand,f,flag);
+disp(sprintf('w=%g mils, l=%g mils',w_out/sf,l_out/sf));
+disp(sprintf('er=%g',er_out));
+disp(sprintf('z0=%g ohms, length=%g degrees',z0,elen));
+</pre><h2>SEE ALSO</h2><p><a href="air_coil_calc.html">air_coil_calc</a><br>
+
+<a href="air_coil_syn.html">air_coil_syn</a><br>
+
+<a href="coax_calc.html">coax_calc</a><br>
+
+<a href="coax_syn.html">coax_syn</a><br>
+
+<a href="coplanar_calc.html">coplanar_calc</a><br>
+
+<a href="coplanar_syn.html">coplanar_syn</a><br>
+
+<a href="coupled_microstrip_calc.html">coupled_microstrip_calc</a><br>
+
+<a href="coupled_microstrip_syn.html">coupled_microstrip_syn</a><br>
+
+<a href="coupled_stripline_calc.html">coupled_stripline_calc</a><br>
+
+<a href="coupled_stripline_syn.html">coupled_stripline_syn</a><br>
+
+<a href="ic_microstrip_calc.html">ic_microstrip_calc</a><br>
+
+<a href="ic_microstrip_syn.html">ic_microstrip_syn</a><br>
+
+<a href="microstrip_calc.html">microstrip_calc</a><br>
+
+<a href="microstrip_syn.html">microstrip_syn</a><br>
+
+<a href="stripline_calc.html">stripline_calc</a><br>
+
+<a href="stripline_syn.html">stripline_syn</a><br>
+
+</p><h2>AUTHOR</h2><p>
+Dan McMahill
+</p><h2>BUGS</h2><p>
+None known
+</p><p>
+Please report any bugs on the <a href="http://wcalc.sf.net">
+Wcalc Sourceforge Project Page</a></p>
+<!-- $Id: man_end.incl,v 1.3 2001/10/30 04:08:24 dan Exp $ -->
+    
+    <P>Return to the <a href="../sci-wcalc.html">Sci-Wcalc</a> page.</P>
+    </font>
+
+  </td>
+
+</tr>
+
+<!-- The left hand column -->
+<!--#include virtual="left_column.incl"-->
+
+</table>
+<p>
+
+<!--#include virtual="main_footer.incl"-->
+
+
+</body>
+</html>

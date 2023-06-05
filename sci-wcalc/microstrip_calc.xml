@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "man.dtd" [
+<!ENTITY see_also SYSTEM "see_also.xml">
+]>
+<TOP>
+<MAN>
+<!-- $Id: microstrip_calc.xml,v 1.7 2008/11/29 20:42:39 dan Exp $ -->
+<!--
+    Copyright (C) 2001, 2004, 2005, 2006 Dan McMahill
+    All rights reserved.
+   
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    
+-->
+
+<NAME>microstrip_calc</NAME>
+
+<SHORTDESCR>Symmetric microstrip transmission line analysis
+</SHORTDESCR>
+
+<SYNOPSIS>
+[z0,keff,elen,loss,L,R,C,G,lc,ld,deltal,depth] = microstrip_calc(w,h,l,tmet,rho,rough,er,tand,f);
+</SYNOPSIS>
+
+<PARAMETERS>
+  <RHS name="w">width of microstrip line (meters)</RHS>
+  <RHS name="h">substrate thickness (meters)</RHS>
+  <RHS name="l">lentgh of microstrip line (meters)</RHS>
+  <RHS name="tmet">metal thickness (meters)</RHS>
+  <RHS name="rho">resistivity of the line (relative to copper)</RHS>
+  <RHS name="rough">conductor surface roughness (meters-rms)</RHS>
+  <RHS name="er">substrate relative permitivitty</RHS>
+  <RHS name="tand">substrate loss tangent</RHS>
+  <RHS name="f">analysis frequency (Hz)</RHS>
+
+  <LHS name="z0">calculated characteristic impedance (Ohms)</LHS>
+  <LHS name="keff">calculated effective relative permitivity</LHS>
+  <LHS name="elen">calculated electrical length of the line (degrees)</LHS>
+  <LHS name="loss">calculated loss of the line (dB)</LHS>
+  <LHS name="L">calculated inductance per length (Henries/meter)</LHS>
+  <LHS name="R">calculated resistance per length (Ohms/meter)</LHS>
+  <LHS name="C">calculated capacitance per length (Farads/meter)</LHS>
+  <LHS name="G">calculated conductance per length (Siemens/meter)</LHS>
+  <LHS name="lc">conductor loss (dB/meter)</LHS>
+  <LHS name="ld">dielectric loss (dB/meter)</LHS>
+  <LHS name="deltal">calculated open circuit end correction (meters)</LHS>
+  <LHS name="depth">calculated skin depth (meters)</LHS>
+</PARAMETERS>
+
+<DESCRIPTION>
+Function to analyze the electrical characteristics of a single 
+microstrip transmission line. The physical
+dimensions of the microstrip line are given as inputs and the
+characteristic impedance, effective dielectric constant, loss and
+open circuit end correction are calculated.
+
+The model accounts for dispersion (frequency dependent propagation
+velocity).
+
+<VERB>
+
+                 |&lt;--W--&gt;|
+                  _______    
+                 | metal | &lt;- rho,rough
+    ----------------------------------------------
+   (  dielectric                         /|\     (
+    )   er,tand                       H   |       )
+   (                                     \|/     (
+    ----------------------------------------------
+    XXXXXXXXXXXXXXXXXX ground XXXXXXXXXXXXXXXXXXXX
+
+</VERB>
+</DESCRIPTION>
+
+<EXAMPLE>
+
+  <SCIEX><SCICMD>sf=25.4e-6;</SCICMD>   <COMMENT>mils to meters conversion factor</COMMENT></SCIEX>
+  <SCIEX><SCICMD>w=20*sf;</SCICMD>      <COMMENT>width</COMMENT></SCIEX>
+  <SCIEX><SCICMD>h=15*sf;</SCICMD>      <COMMENT>height</COMMENT></SCIEX>
+  <SCIEX><SCICMD>l=1100*sf;</SCICMD>    <COMMENT>length</COMMENT></SCIEX>
+  <SCIEX><SCICMD>tmet=1.4*sf;</SCICMD>  <COMMENT>metal thickness</COMMENT></SCIEX>
+  <SCIEX><SCICMD>rho=1.72e-8;</SCICMD>  <COMMENT>resitivity</COMMENT></SCIEX>
+  <SCIEX><SCICMD>rough=0.05*sf;</SCICMD><COMMENT>metal surface roughness</COMMENT></SCIEX>
+  <SCIEX><SCICMD>er=4.5;</SCICMD>       <COMMENT>relative dielectric constant</COMMENT></SCIEX>
+  <SCIEX><SCICMD>tand=0.01;</SCICMD>    <COMMENT>loss tangent</COMMENT></SCIEX>
+  <SCIEX><SCICMD>f=2.4e9;</SCICMD>      <COMMENT>frequency</COMMENT></SCIEX>
+  <SCIEX><SCICMD>[z0,keff,elen,loss,L,R,C,G,lc,ld,deltal,depth] = ...</SCICMD></SCIEX>
+  <SCIEX><SCICMD>  microstrip_calc(w,h,l,tmet,rho,rough,er,tand,f);</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('z0   = %8.4g Ohms', z0));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('keff = %8.4g ', keff));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('elen = %8.4g degrees', elen));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('loss = %8.4g dB', loss));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('L    = %8.4g H/m', L));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('R    = %8.4g Ohms/m', R));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('C    = %8.4g F/m', C));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('G    = %8.4g S/m', G));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('lc   = %8.4g dB/m', lc));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('ld   = %8.4g dB/m', ld));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('open end correction = %8.4g mil', deltal/sf));</SCICMD></SCIEX>
+  <SCIEX><SCICMD>disp(sprintf('skin depth = %8.4g um', depth*1e6));</SCICMD></SCIEX>
+
+  <STDEX>
+*
+* Z0 = 50 Ohms, Keff = 6.972
+microstrip_calc 0.877e-3 1e-3 1.0 3e-5 1.72e-8 0.0 9.60 0.0 1e10
+* Z0 = 75 Ohms, Keff = 2.033
+microstrip_calc 1.379e-3 1e-3 1.0 3e-5 1.72e-8 0.0 2.55 0.0 1e6
+*
+  </STDEX>
+</EXAMPLE>
+
+<SEE_ALSO>
+&see_also;
+</SEE_ALSO>
+
+<AUTHOR>
+Dan McMahill
+</AUTHOR>
+
+<BUGS>
+None known
+</BUGS>
+
+</MAN>
+</TOP>
+

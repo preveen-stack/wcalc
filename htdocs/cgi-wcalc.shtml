@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<!-- $Id: cgi-wcalc.shtml,v 1.16 2009/02/11 22:34:15 dan Exp $ -->
+<!-- Copyright (c) 2001, 2002, 2004, 2005, 2006
+	Dan McMahill  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:danmc@sourceforge.net">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<title>CGI-Wcalc</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="DESCRIPTION" content="Wcalc:  A transmission line calculator">
+<meta name="KEYWORDS" content="
+coupled microstrip,
+coupled microstrip analysis,
+coupled microstrip synthesis,
+coupled stripline,
+coupled stripline analysis,
+coupled stripline synthesis,
+microstrip,
+microstrip analysis,
+microstrip synthesis,
+stripline,
+stripline analysis,
+stripline synthesis,
+">
+</head>
+
+<!-- Start the main page table -->
+<!--#include virtual="page_start.incl"-->
+
+<!-- The main action area -->
+    <center>
+    <font face="helvetica, arial" size="+2">
+      CGI-Wcalc
+    </font>
+    <br>
+    <br>
+
+    <a href="splash.png"><img src="splash.png"
+     alt="Splash Image" border="0" width="363" height="179" hspace="10" vspace="5"></a>
+    </center>
+    <p>
+
+    <font face="helvetica, arial">
+    The CGI frontend to Wcalc provides an easy way for the CAD support
+    staff in a company to make wcalc available to engineers who may be
+    working on several different computing platforms without needing
+    to compile Wcalc for each system.  The CGI frontend provides full
+    analysis and synthesis capability.
+    </font>
+    </p>
+    <p>
+    
+    <!-- Links to the individual CGI pages  -->
+    <font face="helvetica, arial" size="+0">
+    <ul>
+    <LI><A HREF="/cgi-bin/air_coil.cgi">Air Core Inductors (Single Layer Solenoid)</A></LI>
+    <LI><A HREF="/cgi-bin/bars.cgi">Parallel Rectangular Bar Inductance</A></LI>
+    <LI><A HREF="/cgi-bin/coax.cgi">Coaxial Transmission Line</A></LI>
+    <LI><A HREF="/cgi-bin/coplanar.cgi">Coplanar Waveguide</A></LI>
+    <LI><A HREF="/cgi-bin/ic_microstrip.cgi">Integrated Circuit Microstrip (MIS)</A></LI>
+    <LI><A HREF="/cgi-bin/coupled_microstrip.cgi">Printed Circuit Coupled Microstrip</A></LI>
+    <LI><A HREF="/cgi-bin/coupled_stripline.cgi">Coupled Stripline</A></LI>
+    <LI><A HREF="/cgi-bin/microstrip.cgi">Printed Circuit Microstrip (MIM)</A></LI>
+    <LI><A HREF="/cgi-bin/parallel_rc.cgi">Series/Parallel RC Network</A></LI>
+    <LI><A HREF="/cgi-bin/parallel_rl.cgi">Series/Parallel RL Network</A></LI>
+    <LI><A HREF="/cgi-bin/stripline.cgi">Printed Circuit Symmetric Stripline (MIMIM)</A></LI>
+    </ul>
+    </font>
+
+    </p>
+  </td>
+
+</tr>
+
+<!-- The left hand column -->
+<!--#include virtual="left_column.incl"-->
+
+</table>
+<p>
+
+<!--#include virtual="main_footer.incl"-->
+
+
+</body>
+</html>
